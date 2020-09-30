@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148CE2524BF0300374941 /* AppDelegate.swift */; };
 		2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148D02524BF0300374941 /* SceneDelegate.swift */; };
-		2F8148D32524BF0300374941 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148D22524BF0300374941 /* ViewController.swift */; };
+		2F8148D32524BF0300374941 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148D22524BF0300374941 /* MainViewController.swift */; };
 		2F8148D62524BF0300374941 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8148D42524BF0300374941 /* Main.storyboard */; };
 		2F8148D82524BF0600374941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8148D72524BF0600374941 /* Assets.xcassets */; };
 		2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8148D92524BF0600374941 /* LaunchScreen.storyboard */; };
 		2F8148E62524BF0700374941 /* MyAdidasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148E52524BF0700374941 /* MyAdidasTests.swift */; };
 		2F8148F12524BF0700374941 /* MyAdidasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148F02524BF0700374941 /* MyAdidasUITests.swift */; };
+		4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48B9E2524CFBE0040AC46 /* Router.swift */; };
+		4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BA72524CFF20040AC46 /* Coordinator.swift */; };
+		4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */; };
+		4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BB12524D08C0040AC46 /* StoryboardInstantiable.swift */; };
+		4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BB62524D0EF0040AC46 /* HomeCoordinator.swift */; };
+		4CE48BC32524D51B0040AC46 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BC22524D51B0040AC46 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +44,7 @@
 		2F8148CB2524BF0300374941 /* MyAdidas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAdidas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8148CE2524BF0300374941 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F8148D02524BF0300374941 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2F8148D22524BF0300374941 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F8148D22524BF0300374941 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2F8148D52524BF0300374941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F8148D72524BF0600374941 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F8148DA2524BF0600374941 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		2F8148EC2524BF0700374941 /* MyAdidasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAdidasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8148F02524BF0700374941 /* MyAdidasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdidasUITests.swift; sourceTree = "<group>"; };
 		2F8148F22524BF0700374941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CE48B9E2524CFBE0040AC46 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		4CE48BA72524CFF20040AC46 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateRouter.swift; sourceTree = "<group>"; };
+		4CE48BB12524D08C0040AC46 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		4CE48BB62524D0EF0040AC46 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		4CE48BC22524D51B0040AC46 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +113,8 @@
 			children = (
 				2F8148CE2524BF0300374941 /* AppDelegate.swift */,
 				2F8148D02524BF0300374941 /* SceneDelegate.swift */,
-				2F8148D22524BF0300374941 /* ViewController.swift */,
-				2F8148D42524BF0300374941 /* Main.storyboard */,
+				4CE48BA32524CFC40040AC46 /* Coordinator */,
+				4CE48BBB2524D1E70040AC46 /* Scenes */,
 				2F8148D72524BF0600374941 /* Assets.xcassets */,
 				2F8148D92524BF0600374941 /* LaunchScreen.storyboard */,
 				2F8148DC2524BF0600374941 /* Info.plist */,
@@ -126,6 +138,28 @@
 				2F8148F22524BF0700374941 /* Info.plist */,
 			);
 			path = MyAdidasUITests;
+			sourceTree = "<group>";
+		};
+		4CE48BA32524CFC40040AC46 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4CE48B9E2524CFBE0040AC46 /* Router.swift */,
+				4CE48BA72524CFF20040AC46 /* Coordinator.swift */,
+				4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */,
+				4CE48BB62524D0EF0040AC46 /* HomeCoordinator.swift */,
+				4CE48BB12524D08C0040AC46 /* StoryboardInstantiable.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4CE48BBB2524D1E70040AC46 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				2F8148D42524BF0300374941 /* Main.storyboard */,
+				2F8148D22524BF0300374941 /* MainViewController.swift */,
+				4CE48BC22524D51B0040AC46 /* MainViewModel.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +292,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F8148D32524BF0300374941 /* ViewController.swift in Sources */,
+				4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */,
+				4CE48BC32524D51B0040AC46 /* MainViewModel.swift in Sources */,
+				2F8148D32524BF0300374941 /* MainViewController.swift in Sources */,
+				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
+				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
+				4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
+				4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
