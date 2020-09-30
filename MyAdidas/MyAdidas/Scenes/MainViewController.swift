@@ -34,7 +34,14 @@ class MainViewController: UIViewController, ViewModelBindalbe {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Service.fetchGoals() { result in
+            print(result)
+        }
+    }
 
 }
 

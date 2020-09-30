@@ -15,6 +15,10 @@
 		2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8148D92524BF0600374941 /* LaunchScreen.storyboard */; };
 		2F8148E62524BF0700374941 /* MyAdidasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148E52524BF0700374941 /* MyAdidasTests.swift */; };
 		2F8148F12524BF0700374941 /* MyAdidasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148F02524BF0700374941 /* MyAdidasUITests.swift */; };
+		4C0A73B625250D1A0014C21E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73B525250D1A0014C21E /* Service.swift */; };
+		4C0A73BF25250D410014C21E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73BE25250D410014C21E /* Networking.swift */; };
+		4C0A73C725250D6C0014C21E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73C625250D6C0014C21E /* API.swift */; };
+		4C0A73CC25250ED20014C21E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73CB25250ED20014C21E /* Goal.swift */; };
 		4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48B9E2524CFBE0040AC46 /* Router.swift */; };
 		4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BA72524CFF20040AC46 /* Coordinator.swift */; };
 		4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */; };
@@ -55,6 +59,10 @@
 		2F8148EC2524BF0700374941 /* MyAdidasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAdidasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8148F02524BF0700374941 /* MyAdidasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdidasUITests.swift; sourceTree = "<group>"; };
 		2F8148F22524BF0700374941 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0A73B525250D1A0014C21E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		4C0A73BE25250D410014C21E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		4C0A73C625250D6C0014C21E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4C0A73CB25250ED20014C21E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		4CE48B9E2524CFBE0040AC46 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4CE48BA72524CFF20040AC46 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateRouter.swift; sourceTree = "<group>"; };
@@ -114,7 +122,9 @@
 				2F8148CE2524BF0300374941 /* AppDelegate.swift */,
 				2F8148D02524BF0300374941 /* SceneDelegate.swift */,
 				4CE48BA32524CFC40040AC46 /* Coordinator */,
+				4C0A73D025250ED60014C21E /* Models */,
 				4CE48BBB2524D1E70040AC46 /* Scenes */,
+				4C0A73BA25250D1E0014C21E /* Service */,
 				2F8148D72524BF0600374941 /* Assets.xcassets */,
 				2F8148D92524BF0600374941 /* LaunchScreen.storyboard */,
 				2F8148DC2524BF0600374941 /* Info.plist */,
@@ -138,6 +148,24 @@
 				2F8148F22524BF0700374941 /* Info.plist */,
 			);
 			path = MyAdidasUITests;
+			sourceTree = "<group>";
+		};
+		4C0A73BA25250D1E0014C21E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4C0A73B525250D1A0014C21E /* Service.swift */,
+				4C0A73BE25250D410014C21E /* Networking.swift */,
+				4C0A73C625250D6C0014C21E /* API.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4C0A73D025250ED60014C21E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C0A73CB25250ED20014C21E /* Goal.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4CE48BA32524CFC40040AC46 /* Coordinator */ = {
@@ -293,13 +321,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */,
+				4C0A73BF25250D410014C21E /* Networking.swift in Sources */,
 				4CE48BC32524D51B0040AC46 /* MainViewModel.swift in Sources */,
 				2F8148D32524BF0300374941 /* MainViewController.swift in Sources */,
 				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
 				4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */,
+				4C0A73CC25250ED20014C21E /* Goal.swift in Sources */,
+				4C0A73B625250D1A0014C21E /* Service.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
+				4C0A73C725250D6C0014C21E /* API.swift in Sources */,
 				4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
