@@ -29,7 +29,7 @@ struct Item: Codable {
     var id: String
     var title: String
     var description: String
-    var type: String
+    var type: Type
     var goal: Int
     var reward: Reward
 }

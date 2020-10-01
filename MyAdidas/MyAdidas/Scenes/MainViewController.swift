@@ -13,6 +13,10 @@ protocol MainViewDelegate: class {
 
 class MainViewController: UIViewController, ViewModelBindalbe {
     
+    // MARK: Outlets
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     // MARK: Properties
     
     private let viewModel: MainViewModel?
@@ -32,15 +36,13 @@ class MainViewController: UIViewController, ViewModelBindalbe {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        Service.fetchGoals() { result in
-            print(result)
-        }
+        fetchAllGoals()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,14 +56,14 @@ class MainViewController: UIViewController, ViewModelBindalbe {
 
 extension MainViewController {
     
-    private func fetchAllLessons() {
+    private func fetchAllGoals() {
         startActivityIndicator()
         
         Service.fetchGoals() { goals in
             self.viewModel?.goals = goals
             
             DispatchQueue.main.async {
-                // ... do something
+                self.collectionView.reloadData()
                 self.stopActivityIndicator()
             }
         }
@@ -74,11 +76,21 @@ extension MainViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return viewModel?.goals?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GoalCell", for: indexPath) as? GoalCollectionViewCell,
+            let goal = viewModel?.goals?.items[indexPath.row]
+        else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(with: goal)
+        
+        return cell
     }
     
     

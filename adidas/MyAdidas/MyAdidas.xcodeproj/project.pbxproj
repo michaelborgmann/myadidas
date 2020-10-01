@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F0F60DF25260D1900BBD7CC /* GoalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */; };
-		2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */; };
 		2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148CE2524BF0300374941 /* AppDelegate.swift */; };
 		2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148D02524BF0300374941 /* SceneDelegate.swift */; };
 		2F8148D32524BF0300374941 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8148D22524BF0300374941 /* MainViewController.swift */; };
@@ -49,8 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCollectionViewCell.swift; sourceTree = "<group>"; };
-		2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalCollectionViewCell.xib; sourceTree = "<group>"; };
 		2F8148CB2524BF0300374941 /* MyAdidas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAdidas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8148CE2524BF0300374941 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F8148D02524BF0300374941 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,8 +199,6 @@
 				2F8148D42524BF0300374941 /* Main.storyboard */,
 				2F8148D22524BF0300374941 /* MainViewController.swift */,
 				4CE48BC22524D51B0040AC46 /* MainViewModel.swift */,
-				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
-				2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -319,7 +313,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */,
-				2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */,
 				2F8148D82524BF0600374941 /* Assets.xcassets in Resources */,
 				2F8148D62524BF0300374941 /* Main.storyboard in Resources */,
 			);
@@ -356,7 +349,6 @@
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
 				4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */,
 				4C0A73CC25250ED20014C21E /* Goal.swift in Sources */,
-				2F0F60DF25260D1900BBD7CC /* GoalCollectionViewCell.swift in Sources */,
 				4C0A73B625250D1A0014C21E /* Service.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
 				4C0A73C725250D6C0014C21E /* API.swift in Sources */,
