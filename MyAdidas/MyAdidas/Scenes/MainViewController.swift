@@ -42,7 +42,46 @@ class MainViewController: UIViewController, ViewModelBindalbe {
             print(result)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopActivityIndicator()
+    }
 
+}
+
+// MARK: - Networking
+
+extension MainViewController {
+    
+    private func fetchAllLessons() {
+        startActivityIndicator()
+        
+        Service.fetchGoals() { goals in
+            self.viewModel?.goals = goals
+            
+            DispatchQueue.main.async {
+                // ... do something
+                self.stopActivityIndicator()
+            }
+        }
+    }
+    
+}
+
+// MARK: - Collection View
+
+extension MainViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    
 }
 
 // MARK: - Storyboard

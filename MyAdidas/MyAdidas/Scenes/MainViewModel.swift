@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MainViewModel {
-    
+class MainViewModel {
+    var goals: Goal?
 }
