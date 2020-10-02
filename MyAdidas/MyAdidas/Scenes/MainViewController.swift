@@ -96,6 +96,18 @@ extension MainViewController: UICollectionViewDataSource {
     
 }
 
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.frame.width - 100, height: 400)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 75
+    }
+        
+}
+
 // MARK: - Storyboard
 
 extension MainViewController: StoryboardInstantiable {

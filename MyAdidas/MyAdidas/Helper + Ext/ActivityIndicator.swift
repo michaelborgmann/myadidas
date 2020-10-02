@@ -13,7 +13,7 @@ extension UIViewController {
     
     func startActivityIndicator() {
         
-        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .large)
         
         activityIndicator.frame = view.frame
         activityIndicator.center = view.center

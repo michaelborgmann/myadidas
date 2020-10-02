@@ -9,6 +9,7 @@ import UIKit
 
 class GoalCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
@@ -16,7 +17,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        createDropShadows()
     }
     
     func configure(with item: Item) {
@@ -30,5 +31,16 @@ class GoalCollectionViewCell: UICollectionViewCell {
             goalLabel.text = "\(item.goal / 1000) km"
         }
     }
-
+    
+    private func createDropShadows() {
+        containerView.layer.cornerRadius = 20
+        containerView.layer.masksToBounds = true
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 5, height: 5)
+        layer.shadowRadius = 10
+        layer.shadowOpacity = 0.2
+        layer.masksToBounds = false
+    }
+    
 }
