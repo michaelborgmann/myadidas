@@ -93,7 +93,6 @@ extension MainViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {

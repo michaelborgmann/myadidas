@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 class GoalCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var containerView: UIView!
@@ -21,6 +22,8 @@ class GoalCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with item: Item) {
+        createGradient()
+        
         titleLabel.text = item.title
         descriptionLabel.text = item.description
         typeImageView.image = UIImage(named: item.type.rawValue)
@@ -39,8 +42,24 @@ class GoalCollectionViewCell: UICollectionViewCell {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 5, height: 5)
         layer.shadowRadius = 10
-        layer.shadowOpacity = 0.2
+        layer.shadowOpacity = 0.4
         layer.masksToBounds = false
+    }
+    
+    private func createGradient() {
+        let gradient = CAGradientLayer()
+        
+        gradient.frame = bounds
+        
+        gradient.colors = [
+            UIColor(named: "gradient_start")?.cgColor,
+            UIColor(named: "gradient_end")?.cgColor
+        ]
+        
+        gradient.startPoint = CGPoint(x: 1, y: 0.1)
+        gradient.endPoint = CGPoint(x: 0.2, y: 1)
+        
+        containerView.layer.insertSublayer(gradient, at: 0)
     }
     
 }
