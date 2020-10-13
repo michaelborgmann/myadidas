@@ -13,26 +13,39 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var typeImageView: UIImageView!
+    
+    private let labelColor = UIColor.white
     
     override func awakeFromNib() {
         super.awakeFromNib()
         createDropShadows()
     }
     
+    private func goalString(for item: Item) -> String? {
+        switch item.type {
+        case .step:
+            return "\(item.goal) steps"
+        case .walking, .running:
+            return "\(item.goal / 1000) km"
+        }
+    }
+    
     func configure(with item: Item) {
-        createGradient()
+        let colors = GradientColors.itemColor(for: item)
+        createGradient(with: colors)
         
         titleLabel.text = item.title
-        descriptionLabel.text = item.description
-        typeImageView.image = UIImage(named: item.type.rawValue)
+        titleLabel.textColor = labelColor
         
-        if item.type == .step {
-            goalLabel.text = "\(item.goal) steps"
-        } else {
-            goalLabel.text = "\(item.goal / 1000) km"
-        }
+        descriptionLabel.text = item.description
+        descriptionLabel.textColor = labelColor
+        
+        goalLabel.text = goalString(for: item)
+        goalLabel.textColor = labelColor
+        
+        typeImageView.image = UIImage(named: item.type.rawValue)
     }
     
     private func createDropShadows() {
@@ -46,20 +59,57 @@ class GoalCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = false
     }
     
-    private func createGradient() {
+    private func createGradient(with colors: GradientColors) {
         let gradient = CAGradientLayer()
         
         gradient.frame = bounds
         
         gradient.colors = [
-            UIColor(named: "gradient_start")?.cgColor,
-            UIColor(named: "gradient_end")?.cgColor
+            UIColor(named: colors.start)?.cgColor,
+            UIColor(named: colors.end)?.cgColor
         ]
         
         gradient.startPoint = CGPoint(x: 1, y: 0.1)
         gradient.endPoint = CGPoint(x: 0.2, y: 1)
         
         containerView.layer.insertSublayer(gradient, at: 0)
+    }
+    
+}
+    
+extension GoalCollectionViewCell {
+    
+    enum GradientColors {
+        case red
+        case blue
+        
+        var start: String {
+            switch self {
+            case .red:
+                return "gradient_red_start"
+            case .blue:
+                return "gradient_blue_start"
+            }
+        }
+        
+        var end: String {
+            switch self {
+            case .red:
+                return "gradient_red_end"
+            case .blue:
+                return "gradient_blue_end"
+            }
+        }
+        
+        static func itemColor(for item: Item) -> GradientColors {
+            switch item.type {
+            case .step:
+                return .red
+            case .walking, .running:
+                return .blue
+            }
+        }
+        
     }
     
 }
