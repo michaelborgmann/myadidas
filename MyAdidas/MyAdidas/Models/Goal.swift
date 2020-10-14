@@ -23,6 +23,17 @@ enum Type: String, Codable {
     case step = "step"
     case walking = "walking_distance"
     case running = "running_distance"
+    
+    var imageName: String {
+        switch self {
+        case .step:
+            return "steps_04"
+        case .walking:
+            return "walking_02"
+        case .running:
+            return "running_02"
+        }
+    }
 }
 
 struct Item: Codable {

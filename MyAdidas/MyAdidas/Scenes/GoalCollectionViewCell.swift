@@ -12,6 +12,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
     // MARK: - Outlets
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
@@ -22,6 +23,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
     private let gradient = CAGradientLayer()
     
     private var item: Item? = nil {
+        
         didSet {
             updateGradient(with: .colors(for: item))
             
@@ -30,7 +32,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
             updateGoalLabel(goal: goalByType ?? "")
             
             updateTypeImage()
+            updateBackgroundImage()
         }
+        
     }
     
     // MARK: - Lifetime
@@ -39,7 +43,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         setupDropShadows()
-        setupGradient(with: .grey)
+        setupGradient()
     }
     
     // MARK: - Cell Configuration
@@ -55,6 +59,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
 extension GoalCollectionViewCell {
         
     private func setupDropShadows() {
+        
         containerView.layer.cornerRadius = 20
         containerView.layer.masksToBounds = true
         
@@ -63,10 +68,11 @@ extension GoalCollectionViewCell {
         layer.shadowRadius = 10
         layer.shadowOpacity = 0.4
         layer.masksToBounds = false
+        
     }
     
-    private func setupGradient(with colors: Gradient) {
-        
+    private func setupGradient(colors: Gradient = .grey) {
+
         gradient.frame = bounds
         
         gradient.colors = [
@@ -138,6 +144,29 @@ extension GoalCollectionViewCell {
     
     private func updateTypeImage() {
         typeImageView.image = UIImage(named: (item?.type.rawValue)!)
+    }
+    
+    private func updateBackgroundImage() {
+        
+        let noImage = {
+            self.backgroundImageView.image = nil
+            self.backgroundImageView.isHidden = true
+        }
+        
+        guard let type = item?.type else {
+            noImage()
+            return
+        }
+        
+        guard let image = UIImage(named: type.imageName) else {
+            noImage()
+            return
+        }
+        
+        backgroundImageView.alpha = 0.25
+        backgroundImageView.image = image
+        backgroundImageView.isHidden = false
+        
     }
     
 }
