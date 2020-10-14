@@ -7,8 +7,9 @@
 
 import UIKit
 
-@IBDesignable
 class GoalCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Outlets
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,39 +17,44 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
     
-    private let labelColor = UIColor.white
+    // MARK: - Properties
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        createDropShadows()
-    }
+    private let gradient = CAGradientLayer()
     
-    private func goalString(for item: Item) -> String? {
-        switch item.type {
-        case .step:
-            return "\(item.goal) steps"
-        case .walking, .running:
-            return "\(item.goal / 1000) km"
+    private var item: Item? = nil {
+        didSet {
+            updateGradient(with: .colors(for: item))
+            
+            updateTitleLabel(title: item?.title ?? "")
+            updateDescriptionLabel(description: item?.description ?? "")
+            updateGoalLabel(goal: goalByType ?? "")
+            
+            updateTypeImage()
         }
     }
     
-    func configure(with item: Item) {
-        let colors = GradientColors.itemColor(for: item)
-        createGradient(with: colors)
+    // MARK: - Lifetime
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        titleLabel.text = item.title
-        titleLabel.textColor = labelColor
-        
-        descriptionLabel.text = item.description
-        descriptionLabel.textColor = labelColor
-        
-        goalLabel.text = goalString(for: item)
-        goalLabel.textColor = labelColor
-        
-        typeImageView.image = UIImage(named: item.type.rawValue)
+        setupDropShadows()
+        setupGradient(with: .grey)
     }
     
-    private func createDropShadows() {
+    // MARK: - Cell Configuration
+    
+    func configure(with item: Item) {
+        self.item = item
+    }
+    
+}
+
+// MARK: - Setup
+
+extension GoalCollectionViewCell {
+        
+    private func setupDropShadows() {
         containerView.layer.cornerRadius = 20
         containerView.layer.masksToBounds = true
         
@@ -59,57 +65,139 @@ class GoalCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = false
     }
     
-    private func createGradient(with colors: GradientColors) {
-        let gradient = CAGradientLayer()
+    private func setupGradient(with colors: Gradient) {
         
         gradient.frame = bounds
         
         gradient.colors = [
-            UIColor(named: colors.start)?.cgColor,
-            UIColor(named: colors.end)?.cgColor
+            colors.start.cgColor,
+            colors.end.cgColor
         ]
         
         gradient.startPoint = CGPoint(x: 1, y: 0.1)
         gradient.endPoint = CGPoint(x: 0.2, y: 1)
         
         containerView.layer.insertSublayer(gradient, at: 0)
+
     }
     
 }
-    
+
+// MARK: - Computed Properties
+
 extension GoalCollectionViewCell {
     
-    enum GradientColors {
+    private var goalByType: String? {
+        
+        guard
+            let type = item?.type,
+            let goal = item?.goal
+        else {
+            return nil
+        }
+        
+        switch type {
+        case .step:
+            return "\(goal) steps"
+        case .walking, .running:
+            return "\(goal / 1000) km"
+        }
+        
+    }
+    
+}
+
+// MARK: - Update UI Components
+
+extension GoalCollectionViewCell {
+    
+    private func updateTitleLabel(title: String, color: UIColor = Style.labelColor) {
+        titleLabel.text = title
+        titleLabel.textColor = color
+    }
+    
+    private func updateDescriptionLabel(description: String, color: UIColor = Style.labelColor) {
+        descriptionLabel.text = description
+        descriptionLabel.textColor = Style.labelColor
+    }
+    
+    private func updateGoalLabel(goal: String, color: UIColor = Style.labelColor) {
+        goalLabel.text = goalByType
+        goalLabel.textColor = color
+    }
+    
+    private func updateGradient(with colors: Gradient) {
+        
+        gradient.frame = bounds
+        
+        gradient.colors = [
+            colors.start.cgColor,
+            colors.end.cgColor
+        ]
+    }
+    
+    private func updateTypeImage() {
+        typeImageView.image = UIImage(named: (item?.type.rawValue)!)
+    }
+    
+}
+
+// MARK: - Gradient
+
+extension GoalCollectionViewCell {
+    
+    private enum Gradient: String {
         case red
         case blue
+        case green
+        case grey
         
-        var start: String {
-            switch self {
-            case .red:
-                return "gradient_red_start"
-            case .blue:
-                return "gradient_blue_start"
+        var start: UIColor {
+            guard
+                let color = UIColor(named: "gradient_\(self.rawValue)_start")
+            else {
+                return .lightGray
             }
+            
+            return color
         }
         
-        var end: String {
-            switch self {
-            case .red:
-                return "gradient_red_end"
-            case .blue:
-                return "gradient_blue_end"
+        var end: UIColor {
+            guard
+                let color = UIColor(named: "gradient_\(self.rawValue)_start")
+            else {
+                return .darkGray
             }
+            
+            return color
         }
         
-        static func itemColor(for item: Item) -> GradientColors {
+        static func colors(for item: Item?) -> Gradient {
+            
+            guard let item = item else {
+                return .grey
+            }
+            
             switch item.type {
             case .step:
                 return .red
-            case .walking, .running:
+            case .walking:
+                return .green
+            case .running:
                 return .blue
             }
         }
         
+    }
+    
+}
+
+// MARK: - Constants
+
+extension GoalCollectionViewCell {
+    
+    private struct Style {
+        static let labelColor = UIColor.white
     }
     
 }
