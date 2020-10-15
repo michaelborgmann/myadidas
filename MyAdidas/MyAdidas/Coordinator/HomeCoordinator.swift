@@ -15,9 +15,6 @@ class HomeCoordinator: Coordinator {
     }
     
     func present(animated: Bool, onDismissed: (() -> Void)?) {
-        
-        Goal.delete()
-        
         let viewModel = MainViewModel()
         viewModel.goals = Goal.persisted().first
         
@@ -31,6 +28,22 @@ class HomeCoordinator: Coordinator {
 // MARK: - Delegates
 
 extension HomeCoordinator: MainViewDelegate {
+    
+    func showError(emoji: String, title: String, details: String) {
+        let viewModel = ErrorViewModel()
+        
+        viewModel.emoji = emoji
+        viewModel.title = title
+        viewModel.details = details
+        
+        let viewController = ErrorViewController.instantiate(with: viewModel, delegate: self)
+        router.present(viewController, animated: true)
+    }
+    
+}
+
+extension HomeCoordinator: ErrorViewDelegate {
+    
     func doSomething() {
         print("coordinator works")
     }

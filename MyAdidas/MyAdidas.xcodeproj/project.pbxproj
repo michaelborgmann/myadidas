@@ -24,6 +24,11 @@
 		4C0A73DB252519BD0014C21E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */; };
 		4C1B984A2525EC85008BA2E5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C1B98492525EC85008BA2E5 /* RealmSwift */; };
 		4C831D6B2526910C0037F636 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C831D6A2526910C0037F636 /* HealthKit.framework */; };
+		4CB0279925385BBF00520ECE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0279825385BBF00520ECE /* NetworkMonitor.swift */; };
+		4CB027A525386CE200520ECE /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027A425386CE200520ECE /* ErrorViewController.swift */; };
+		4CB027AE25386EE700520ECE /* Error.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB027AD25386EE700520ECE /* Error.storyboard */; };
+		4CB027B3253872C000520ECE /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027B2253872C000520ECE /* ErrorViewModel.swift */; };
+		4CB027BB253876D800520ECE /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027BA253876D800520ECE /* Gradient.swift */; };
 		4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48B9E2524CFBE0040AC46 /* Router.swift */; };
 		4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BA72524CFF20040AC46 /* Coordinator.swift */; };
 		4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */; };
@@ -73,6 +78,11 @@
 		4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		4C831D682526910C0037F636 /* MyAdidas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyAdidas.entitlements; sourceTree = "<group>"; };
 		4C831D6A2526910C0037F636 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		4CB0279825385BBF00520ECE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		4CB027A425386CE200520ECE /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		4CB027AD25386EE700520ECE /* Error.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Error.storyboard; sourceTree = "<group>"; };
+		4CB027B2253872C000520ECE /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
+		4CB027BA253876D800520ECE /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		4CE48B9E2524CFBE0040AC46 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4CE48BA72524CFF20040AC46 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateRouter.swift; sourceTree = "<group>"; };
@@ -139,10 +149,10 @@
 				4C0A73D025250ED60014C21E /* Models */,
 				4CE48BBB2524D1E70040AC46 /* Scenes */,
 				4C0A73BA25250D1E0014C21E /* Service */,
+				4C0A73DF252519C40014C21E /* Helper + Ext */,
 				2F8148D72524BF0600374941 /* Assets.xcassets */,
 				2F8148D92524BF0600374941 /* LaunchScreen.storyboard */,
 				2F8148DC2524BF0600374941 /* Info.plist */,
-				4C0A73DF252519C40014C21E /* Helper + Ext */,
 			);
 			path = MyAdidas;
 			sourceTree = "<group>";
@@ -187,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */,
+				4CB0279825385BBF00520ECE /* NetworkMonitor.swift */,
+				4CB027BA253876D800520ECE /* Gradient.swift */,
 			);
 			path = "Helper + Ext";
 			sourceTree = "<group>";
@@ -197,6 +209,28 @@
 				4C831D6A2526910C0037F636 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CB027A025386CCA00520ECE /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				2F8148D42524BF0300374941 /* Main.storyboard */,
+				2F8148D22524BF0300374941 /* MainViewController.swift */,
+				4CE48BC22524D51B0040AC46 /* MainViewModel.swift */,
+				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
+				2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		4CB027A925386CFE00520ECE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				4CB027AD25386EE700520ECE /* Error.storyboard */,
+				4CB027A425386CE200520ECE /* ErrorViewController.swift */,
+				4CB027B2253872C000520ECE /* ErrorViewModel.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		4CE48BA32524CFC40040AC46 /* Coordinator */ = {
@@ -214,11 +248,8 @@
 		4CE48BBB2524D1E70040AC46 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2F8148D42524BF0300374941 /* Main.storyboard */,
-				2F8148D22524BF0300374941 /* MainViewController.swift */,
-				4CE48BC22524D51B0040AC46 /* MainViewModel.swift */,
-				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
-				2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */,
+				4CB027A025386CCA00520ECE /* Goals */,
+				4CB027A925386CFE00520ECE /* Error */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -335,6 +366,7 @@
 				2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */,
 				2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */,
 				2F8148D82524BF0600374941 /* Assets.xcassets in Resources */,
+				4CB027AE25386EE700520ECE /* Error.storyboard in Resources */,
 				2F8148D62524BF0300374941 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,19 +393,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */,
+				4CB0279925385BBF00520ECE /* NetworkMonitor.swift in Sources */,
 				4C0A73BF25250D410014C21E /* Networking.swift in Sources */,
 				4CE48BC32524D51B0040AC46 /* MainViewModel.swift in Sources */,
 				2F8148D32524BF0300374941 /* MainViewController.swift in Sources */,
+				4CB027BB253876D800520ECE /* Gradient.swift in Sources */,
 				4C0A73DB252519BD0014C21E /* ActivityIndicator.swift in Sources */,
 				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
+				4CB027B3253872C000520ECE /* ErrorViewModel.swift in Sources */,
 				4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */,
 				4C0A73CC25250ED20014C21E /* Goal.swift in Sources */,
 				2F0F60DF25260D1900BBD7CC /* GoalCollectionViewCell.swift in Sources */,
 				4C0A73B625250D1A0014C21E /* Service.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
 				4C0A73C725250D6C0014C21E /* API.swift in Sources */,
+				4CB027A525386CE200520ECE /* ErrorViewController.swift in Sources */,
 				4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

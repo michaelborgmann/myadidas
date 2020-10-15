@@ -171,56 +171,6 @@ extension GoalCollectionViewCell {
     
 }
 
-// MARK: - Gradient
-
-extension GoalCollectionViewCell {
-    
-    private enum Gradient: String {
-        case red
-        case blue
-        case green
-        case grey
-        
-        var start: UIColor {
-            guard
-                let color = UIColor(named: "gradient_\(self.rawValue)_start")
-            else {
-                return .lightGray
-            }
-            
-            return color
-        }
-        
-        var end: UIColor {
-            guard
-                let color = UIColor(named: "gradient_\(self.rawValue)_start")
-            else {
-                return .darkGray
-            }
-            
-            return color
-        }
-        
-        static func colors(for item: Item?) -> Gradient {
-            
-            guard let item = item else {
-                return .grey
-            }
-            
-            switch item.type {
-            case .step:
-                return .red
-            case .walking:
-                return .green
-            case .running:
-                return .blue
-            }
-        }
-        
-    }
-    
-}
-
 // MARK: - Constants
 
 extension GoalCollectionViewCell {

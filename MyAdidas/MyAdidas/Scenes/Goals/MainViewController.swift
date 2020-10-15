@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewDelegate: class {
-    func doSomething()
+    func showError(emoji: String, title: String, details: String)
 }
 
 class MainViewController: UIViewController, ViewModelBindalbe {
@@ -36,21 +36,36 @@ class MainViewController: UIViewController, ViewModelBindalbe {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
+        
+        NetworkMonitor.shared.start()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchAllGoals()
+        if NetworkMonitor.shared.isConnected {
+            fetchAllGoals()
+        } else if viewModel?.goals != nil {
+            collectionView.reloadData()
+        } else {
+            delegate?.showError(
+                emoji: "😱",
+                title: "Ooops",
+                details: "Please connect to the internet and try again."
+            )
+        }
         
-        collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         stopActivityIndicator()
+        
+        NetworkMonitor.shared.stop()
     }
 
 }
