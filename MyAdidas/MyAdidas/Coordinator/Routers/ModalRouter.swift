@@ -35,7 +35,7 @@ extension ModalRouter: Router {
     }
 
     private func presentModally(_ viewController: UIViewController, animated: Bool) {
-        addCancelButton(to: viewController)
+        //addCancelButton(to: viewController)
         navigationController.setViewControllers([viewController], animated: false)
         
         navigationController.modalPresentationStyle = .fullScreen
