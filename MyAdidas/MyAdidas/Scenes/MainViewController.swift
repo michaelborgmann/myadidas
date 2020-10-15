@@ -42,7 +42,10 @@ class MainViewController: UIViewController, ViewModelBindalbe {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         fetchAllGoals()
+        
+        collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,12 +63,15 @@ extension MainViewController {
         startActivityIndicator()
         
         Service.fetchGoals() { goals in
-            self.viewModel?.goals = goals
             
             DispatchQueue.main.async {
+                self.viewModel?.goals = goals
+                self.viewModel?.persist()
+                
                 self.collectionView.reloadData()
                 self.stopActivityIndicator()
             }
+            
         }
     }
     

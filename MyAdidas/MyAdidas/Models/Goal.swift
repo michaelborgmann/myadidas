@@ -71,12 +71,53 @@ class Item: Object, Codable {
     
 }
 
-class Goal: Codable {
+class Goal: Object, Codable {
     var items = List<Item>()
-    @objc dynamic var nextPageToken: String
+    @objc dynamic var nextPageToken: String = ""
     
     enum CodingKeys: String, CodingKey {
         case items = "items"
         case nextPageToken = "nextPageToken"
     }
+    
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.nextPageToken = try container.decode(String.self, forKey: .nextPageToken)
+        
+        let itemsArray = try container.decode([Item].self, forKey: .items)
+        items.append(objectsIn: itemsArray)
+        
+    }
+    
+    static func persisted() -> Results<Goal> {
+        
+        do {
+            let realm = try Realm()
+            
+            return realm.objects(Goal.self)
+            
+        } catch {
+            fatalError("Cannot get persisted REALM")
+        }
+        
+    }
+    
+    static func delete() {
+        
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.deleteAll()
+            }
+            
+        } catch {
+            fatalError("Cannot delete REALM")
+        }
+        
+    }
+    
 }

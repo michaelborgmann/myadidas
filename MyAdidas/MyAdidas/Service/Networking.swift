@@ -57,7 +57,7 @@ struct Networking<API: APIProtocol> {
             let decoded = try JSONDecoder().decode(Model.self, from: data)
             return decoded
         } catch {
-            print(error)
+            debugPrint(error)
             return nil
         }
     }

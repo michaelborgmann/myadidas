@@ -16,7 +16,11 @@ class HomeCoordinator: Coordinator {
     
     func present(animated: Bool, onDismissed: (() -> Void)?) {
         
+        Goal.delete()
+        
         let viewModel = MainViewModel()
+        viewModel.goals = Goal.persisted().first
+        
         let viewController = MainViewController.instantiate(with: viewModel, delegate: self)
         
         router.present(viewController, animated: true)
