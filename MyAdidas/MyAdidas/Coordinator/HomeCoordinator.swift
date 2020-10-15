@@ -44,8 +44,8 @@ extension HomeCoordinator: MainViewDelegate {
 
 extension HomeCoordinator: ErrorViewDelegate {
     
-    func doSomething() {
-        print("coordinator works")
+    func dismiss() {
+        router.dismiss(animated: true)
     }
     
 }

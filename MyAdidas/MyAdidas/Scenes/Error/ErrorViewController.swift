@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ErrorViewDelegate: class {
-    func doSomething()
+    func dismiss()
 }
 
 class ErrorViewController: UIViewController, ViewModelBindalbe {
@@ -43,6 +43,15 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
         
         setupGradient()
         setupErrorMessage()
+        
+        NetworkMonitor.shared.delegate = self
+        NetworkMonitor.shared.start()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NetworkMonitor.shared.stop()
     }
     
     private func setupGradient(colors: Gradient = .error) {
@@ -54,8 +63,8 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
             colors.end.cgColor
         ]
         
-        gradient.startPoint = CGPoint(x: 1, y: 0.1)
-        gradient.endPoint = CGPoint(x: 0.2, y: 1)
+        gradient.startPoint = CGPoint(x: 0.5, y: 0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1)
         
         view.layer.insertSublayer(gradient, at: 0)
 
@@ -73,6 +82,20 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
     
     private struct Style {
         static let labelColor = UIColor.white
+    }
+    
+}
+
+// MARK: - Network Monitoring
+
+extension ErrorViewController: NetworkMonitorDelegate {
+    
+    func onConnect() {
+        delegate?.dismiss()
+    }
+    
+    func onDisconnect() {
+        // nothing to be done
     }
     
 }

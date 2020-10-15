@@ -47,7 +47,7 @@ class MainViewController: UIViewController, ViewModelBindalbe {
         super.viewWillAppear(animated)
         
         if NetworkMonitor.shared.isConnected {
-            fetchAllGoals()
+            //fetchAllGoals()
         } else if viewModel?.goals != nil {
             collectionView.reloadData()
         } else {
