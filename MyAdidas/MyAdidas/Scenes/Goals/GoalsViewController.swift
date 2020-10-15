@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol MainViewDelegate: class {
-    func showError(emoji: String, title: String, details: String)
+protocol GoalsViewDelegate: class {
+    func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)
 }
 
-class MainViewController: UIViewController, ViewModelBindalbe {
+class GoalsViewController: UIViewController, ViewModelBindalbe {
     
     // MARK: Outlets
     
@@ -19,14 +19,14 @@ class MainViewController: UIViewController, ViewModelBindalbe {
     
     // MARK: Properties
     
-    private let viewModel: MainViewModel?
+    private let viewModel: GoalsViewModel?
     
-    private weak var delegate: MainViewDelegate?
+    private weak var delegate: GoalsViewDelegate?
     
     // MARK: - Lifecycle
     
     required public init?<T>(coder: NSCoder, viewModel: T) {
-        self.viewModel = viewModel as? MainViewModel
+        self.viewModel = viewModel as? GoalsViewModel
         super.init(coder: coder)
     }
     
@@ -39,19 +39,21 @@ class MainViewController: UIViewController, ViewModelBindalbe {
         
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
-        
-        NetworkMonitor.shared.start()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if NetworkMonitor.shared.isConnected {
-            //fetchAllGoals()
+            fetchAllGoals()
         } else if viewModel?.goals != nil {
             collectionView.reloadData()
+            
+            NetworkMonitor.shared.delegate = self
+            
         } else {
             delegate?.showError(
+                self,
                 emoji: "😱",
                 title: "Ooops",
                 details: "Please connect to the internet and try again."
@@ -64,15 +66,13 @@ class MainViewController: UIViewController, ViewModelBindalbe {
         super.viewWillDisappear(animated)
         
         stopActivityIndicator()
-        
-        NetworkMonitor.shared.stop()
     }
 
 }
 
 // MARK: - Networking
 
-extension MainViewController {
+extension GoalsViewController {
     
     private func fetchAllGoals() {
         startActivityIndicator()
@@ -94,7 +94,7 @@ extension MainViewController {
 
 // MARK: - Collection View
 
-extension MainViewController: UICollectionViewDataSource {
+extension GoalsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.goals?.items.count ?? 0
@@ -116,7 +116,7 @@ extension MainViewController: UICollectionViewDataSource {
     
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout {
+extension GoalsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width - 100, height: 400)
@@ -128,11 +128,27 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         
 }
 
+// MARK: - Network Monitor
+
+extension GoalsViewController: NetworkMonitorDelegate {
+    
+    func onConnect() {
+        DispatchQueue.main.async {
+            self.fetchAllGoals()
+        }
+    }
+    
+    func onDisconnect() {
+        // nothing to do
+    }
+    
+}
+
 // MARK: - Storyboard
 
-extension MainViewController: StoryboardInstantiable {
+extension GoalsViewController: StoryboardInstantiable {
     
-    class func instantiate(with viewModel: MainViewModel, delegate: MainViewDelegate) -> MainViewController {
+    class func instantiate(with viewModel: GoalsViewModel, delegate: GoalsViewDelegate) -> GoalsViewController {
         let viewController = instanceFromStoryboard(with: viewModel)
         viewController.delegate = delegate
         return viewController

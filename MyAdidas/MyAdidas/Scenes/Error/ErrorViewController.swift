@@ -45,13 +45,10 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
         setupErrorMessage()
         
         NetworkMonitor.shared.delegate = self
-        NetworkMonitor.shared.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        NetworkMonitor.shared.stop()
     }
     
     private func setupGradient(colors: Gradient = .error) {
