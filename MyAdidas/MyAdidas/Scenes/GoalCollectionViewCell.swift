@@ -28,7 +28,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
             updateGradient(with: .colors(for: item))
             
             updateTitleLabel(title: item?.title ?? "")
-            updateDescriptionLabel(description: item?.description ?? "")
+            updateDescriptionLabel(description: item?.details ?? "")
             updateGoalLabel(goal: goalByType ?? "")
             
             updateTypeImage()
