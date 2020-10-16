@@ -17,7 +17,6 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     // MARK: Outlets
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var profileButton: UIButton!
     
     // MARK: Properties
     
@@ -35,6 +34,10 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func showProfile() {
+        delegate?.showProfile(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,20 +45,11 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
         
-        let attributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont(name: "texgyreadventor-bold", size: 32)!
-        ]
-        
-        navigationController?.navigationBar.titleTextAttributes = attributes
-        
-        title = "Goals"
+        setupNavigationController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        authorizeHealthKit()
         
         if NetworkMonitor.shared.isConnected {
             fetchAllGoals()
@@ -83,32 +77,55 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     
     // MARK: - Actions
     
-    @IBAction func profile(_ sender: Any) {
-        delegate?.showProfile(self)
-    }
+}
+
+// MARK: - Setup View Controller
+
+extension GoalsViewController {
     
-    private func authorizeHealthKit() {
+    private func setupNavigationController() {
         
-        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
-            
-            guard authorized else {
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "texgyreadventor-bold", size: 32)!
+        ]
+        
+        navigationController?.navigationBar.titleTextAttributes = attributes
+        
+        title = "Goals"
+        
+        //
                 
-                let baseMessage = "HealthKit Authorization Failed"
-                
-                if let error = error {
-                    print("\(baseMessage). Reason: \(error.localizedDescription)")
-                } else {
-                    print(baseMessage)
-                }
-            
-                return
-            }
-          
-            print("HealthKit Successfully Authorized.")
+        let defaultProfileImage = UIImage(systemName: "person.circle.fill")
+        
+        let button = UIBarButtonItem(
+            image: defaultProfileImage,
+            style: .plain,
+            target: self,
+            action: #selector(showProfile)
+        )
+        
+        button.tintColor = .black
+        
+        navigationItem.rightBarButtonItem = button
+    }
+
+}
+
+// MARK: - Network Monitor
+
+extension GoalsViewController: NetworkMonitorDelegate {
+    
+    func onConnect() {
+        DispatchQueue.main.async {
+            self.fetchAllGoals()
         }
     }
-
-
+    
+    func onDisconnect() {
+        // nothing to do
+    }
+    
 }
 
 // MARK: - Networking
@@ -167,22 +184,6 @@ extension GoalsViewController: UICollectionViewDelegateFlowLayout {
         return 75
     }
         
-}
-
-// MARK: - Network Monitor
-
-extension GoalsViewController: NetworkMonitorDelegate {
-    
-    func onConnect() {
-        DispatchQueue.main.async {
-            self.fetchAllGoals()
-        }
-    }
-    
-    func onDisconnect() {
-        // nothing to do
-    }
-    
 }
 
 // MARK: - Storyboard
