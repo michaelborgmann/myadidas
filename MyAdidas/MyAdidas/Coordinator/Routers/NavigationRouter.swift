@@ -21,6 +21,15 @@ public class NavigationRouter: NSObject {
         
         navigationController.delegate = self
         
+        /*
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "texgyreadventor-bold", size: 32)!
+        ]
+        
+        navigationController.navigationBar.titleTextAttributes =  attrs
+        */
+        
         UIApplication.shared.windows.first?.rootViewController = navigationController
     }
     

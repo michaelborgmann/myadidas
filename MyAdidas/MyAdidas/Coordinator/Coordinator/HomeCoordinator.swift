@@ -22,21 +22,6 @@ class HomeCoordinator: Coordinator {
         viewController.delegate = self
         
         router.present(viewController, animated: true)
-        
-        /*
-        let viewController = LaunchingViewController.instantiate(with: SplashViewModel(), delegate: self)
-        router.present(viewController, animated: true)
-        
-        let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
-        
-        let viewModel = GoalsViewModel()
-        viewModel.goals = Goal.persisted().first
-        
-        let childViewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
-        
-        router = NavigationRouter(parentViewController: parentalViewController)
-        router.present(childViewController, animated: true)
-        */
     }
     
 }
@@ -73,28 +58,11 @@ extension HomeCoordinator: GoalsViewDelegate {
 extension HomeCoordinator: MainViewDelegate {
     
     func showGoals() {
-        
-        /*
-        let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
-        
         let viewModel = GoalsViewModel()
         viewModel.goals = Goal.persisted().first
         
         let viewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
         
-        router = NavigationRouter(parentViewController: parentalViewController)
-        router.present(viewController, animated: true)
-        */
-        
-        
-        //let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
-        
-        let viewModel = GoalsViewModel()
-        viewModel.goals = Goal.persisted().first
-        
-        let viewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
-        
-        //router = NavigationRouter(parentViewController: parentalViewController)
         router = NavigationRouter()
         router.present(viewController, animated: true)
  

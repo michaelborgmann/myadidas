@@ -41,6 +41,15 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
+        
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: UIFont(name: "texgyreadventor-bold", size: 32)!
+        ]
+        
+        navigationController?.navigationBar.titleTextAttributes = attributes
+        
+        title = "Goals"
     }
     
     override func viewDidAppear(_ animated: Bool) {

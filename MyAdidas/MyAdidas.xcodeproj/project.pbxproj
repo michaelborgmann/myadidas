@@ -45,7 +45,10 @@
 		4CEB1481253906D50021CDE3 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB1480253906D50021CDE3 /* Profile.storyboard */; };
 		4CEB1486253906E20021CDE3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */; };
 		4CEB148B253918C80021CDE3 /* LaunchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */; };
-		4CEB1493253918D60021CDE3 /* Launching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB1492253918D60021CDE3 /* Launching.storyboard */; };
+		4CEB14DA2539B2040021CDE3 /* texgyreadventor-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB14D52539B1EE0021CDE3 /* texgyreadventor-bold.otf */; };
+		4CEB14DE2539B2070021CDE3 /* texgyreadventor-italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB14D82539B1EE0021CDE3 /* texgyreadventor-italic.otf */; };
+		4CEB14E22539B2090021CDE3 /* texgyreadventor-bolditalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB14D62539B1EE0021CDE3 /* texgyreadventor-bolditalic.otf */; };
+		4CEB14E62539B20C0021CDE3 /* texgyreadventor-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB14D72539B1EE0021CDE3 /* texgyreadventor-regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +113,10 @@
 		4CEB1480253906D50021CDE3 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingViewController.swift; sourceTree = "<group>"; };
-		4CEB1492253918D60021CDE3 /* Launching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launching.storyboard; sourceTree = "<group>"; };
+		4CEB14D52539B1EE0021CDE3 /* texgyreadventor-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "texgyreadventor-bold.otf"; sourceTree = "<group>"; };
+		4CEB14D62539B1EE0021CDE3 /* texgyreadventor-bolditalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "texgyreadventor-bolditalic.otf"; sourceTree = "<group>"; };
+		4CEB14D72539B1EE0021CDE3 /* texgyreadventor-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "texgyreadventor-regular.otf"; sourceTree = "<group>"; };
+		4CEB14D82539B1EE0021CDE3 /* texgyreadventor-italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "texgyreadventor-italic.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +178,7 @@
 				4CE48BBB2524D1E70040AC46 /* Scenes */,
 				4C0A73BA25250D1E0014C21E /* Service */,
 				4C0A73DF252519C40014C21E /* Helper + Ext */,
-				2F8148D72524BF0600374941 /* Assets.xcassets */,
+				4CEB14C32539AE100021CDE3 /* Resources */,
 				2F8148D92524BF0600374941 /* LaunchScreen.storyboard */,
 				2F8148DC2524BF0600374941 /* Info.plist */,
 			);
@@ -313,10 +319,29 @@
 		4CEB14A9253995500021CDE3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4CEB1492253918D60021CDE3 /* Launching.storyboard */,
 				4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		4CEB14C32539AE100021CDE3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB14D92539B1F80021CDE3 /* Fonts */,
+				2F8148D72524BF0600374941 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4CEB14D92539B1F80021CDE3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB14D52539B1EE0021CDE3 /* texgyreadventor-bold.otf */,
+				4CEB14D62539B1EE0021CDE3 /* texgyreadventor-bolditalic.otf */,
+				4CEB14D82539B1EE0021CDE3 /* texgyreadventor-italic.otf */,
+				4CEB14D72539B1EE0021CDE3 /* texgyreadventor-regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,13 +453,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CEB1493253918D60021CDE3 /* Launching.storyboard in Resources */,
+				4CEB14DA2539B2040021CDE3 /* texgyreadventor-bold.otf in Resources */,
+				4CEB14E22539B2090021CDE3 /* texgyreadventor-bolditalic.otf in Resources */,
 				4CEB1481253906D50021CDE3 /* Profile.storyboard in Resources */,
 				2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */,
 				2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */,
+				4CEB14DE2539B2070021CDE3 /* texgyreadventor-italic.otf in Resources */,
 				2F8148D82524BF0600374941 /* Assets.xcassets in Resources */,
 				4CB027AE25386EE700520ECE /* Error.storyboard in Resources */,
 				2F8148D62524BF0300374941 /* Goals.storyboard in Resources */,
+				4CEB14E62539B20C0021CDE3 /* texgyreadventor-regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
