@@ -20,6 +20,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    private var initialFrame: CGRect?
+    private var initialCornerRadius: CGFloat?
+    
     private let gradient = CAGradientLayer()
     
     private var item: Item? = nil {
@@ -169,6 +172,68 @@ extension GoalCollectionViewCell {
         
     }
     
+}
+
+// MARK: - Appstore Card Animation
+
+extension GoalCollectionViewCell {
+
+    func expand(in collectionView: UICollectionView) {
+        
+        initialFrame = self.frame
+        initialCornerRadius = self.contentView.layer.cornerRadius
+        
+        self.contentView.layer.cornerRadius = 0
+        
+        self.frame = CGRect(
+            x: 0,
+            y: collectionView.contentOffset.y,
+            width: collectionView.frame.width,
+            height: collectionView.frame.height
+        )
+        
+        layoutIfNeeded()
+    }
+
+    func collapse() {
+        
+        self.contentView.layer.cornerRadius = initialCornerRadius ?? self.contentView.layer.cornerRadius
+        
+        self.frame = initialFrame ?? self.frame
+        
+        initialFrame = nil
+        initialCornerRadius = nil
+        
+        layoutIfNeeded()
+    }
+    
+    func hide(in collectionView: UICollectionView, frameOfSelectedCell: CGRect) {
+        initialFrame = self.frame
+        
+        let currentY = self.frame.origin.y
+        let newY: CGFloat
+        
+        if currentY < frameOfSelectedCell.origin.y {
+            let offset = frameOfSelectedCell.origin.y - currentY
+            newY = collectionView.contentOffset.y - offset
+        } else {
+            let offset = currentY - frameOfSelectedCell.maxY
+            newY = collectionView.contentOffset.y + collectionView.frame.height + offset
+        }
+        
+        self.frame.origin.y = newY
+        
+        layoutIfNeeded()
+    }
+
+    func show() {
+        self.frame = initialFrame ?? self.frame
+        
+        initialFrame = nil
+        
+        layoutIfNeeded()
+    }
+
 }
 
 // MARK: - Constants

@@ -24,6 +24,15 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     
     private weak var delegate: GoalsViewDelegate?
     
+    override var prefersStatusBarHidden: Bool {
+        
+        guard let viewModel = viewModel else {
+            return false
+        }
+        
+        return viewModel.isStatusBarHidden
+    }
+    
     // MARK: - Lifecycle
     
     required public init?<T>(coder: NSCoder, viewModel: T) {
@@ -174,10 +183,83 @@ extension GoalsViewController: UICollectionViewDataSource {
     
 }
 
+extension GoalsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+        if collectionView.contentOffset.y < 0 ||
+            collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.frame.height {
+            return
+        }
+        
+        let dampingRatio: CGFloat = 0.8
+        let initialVelocity = CGVector.zero
+        let springParameters = UISpringTimingParameters(dampingRatio: dampingRatio, initialVelocity: initialVelocity)
+        let animator = UIViewPropertyAnimator(duration: 0.5, timingParameters: springParameters)
+        
+        self.view.isUserInteractionEnabled = false
+        
+        if let selectedCell = viewModel?.expandedCell {
+            
+            viewModel?.isStatusBarHidden = false
+            
+            navigationController?.navigationBar.isHidden = false
+            
+            animator.addAnimations {
+                selectedCell.collapse()
+                
+                for cell in self.viewModel!.hiddenCells {
+                    cell.show()
+                }
+            }
+            
+            animator.addCompletion { _ in
+                collectionView.isScrollEnabled = true
+                
+                self.viewModel?.expandedCell = nil
+                self.viewModel?.hiddenCells.removeAll()
+            }
+            
+        } else {
+            viewModel?.isStatusBarHidden = true
+            
+            navigationController?.navigationBar.isHidden = true
+            
+            collectionView.isScrollEnabled = false
+            
+            let selectedCell = collectionView.cellForItem(at: indexPath)! as! GoalCollectionViewCell
+            let frameOfSelectedCell = selectedCell.frame
+            
+            viewModel?.expandedCell = selectedCell
+            viewModel?.hiddenCells = collectionView.visibleCells.map { $0 as! GoalCollectionViewCell }.filter { $0 != selectedCell }
+            
+            animator.addAnimations {
+                selectedCell.expand(in: collectionView)
+                
+                for cell in self.viewModel!.hiddenCells {
+                    cell.hide(in: collectionView, frameOfSelectedCell: frameOfSelectedCell)
+                }
+            }
+        }
+
+        animator.addAnimations {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+
+        animator.addCompletion { _ in
+            self.view.isUserInteractionEnabled = true
+        }
+        
+        animator.startAnimation()
+        
+    }
+    
+}
+
 extension GoalsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width - 100, height: 400)
+        CGSize(width: collectionView.frame.width - 100, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

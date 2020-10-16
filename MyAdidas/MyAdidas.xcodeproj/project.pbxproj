@@ -248,8 +248,8 @@
 				2F8148D42524BF0300374941 /* Goals.storyboard */,
 				2F8148D22524BF0300374941 /* GoalsViewController.swift */,
 				4CE48BC22524D51B0040AC46 /* GoalsViewModel.swift */,
-				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
 				2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */,
+				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";

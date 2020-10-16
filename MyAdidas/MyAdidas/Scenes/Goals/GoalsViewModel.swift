@@ -33,4 +33,9 @@ class GoalsViewModel {
         }
     }
     
+    var isStatusBarHidden = false
+    
+    var expandedCell: GoalCollectionViewCell?
+    var hiddenCells: [GoalCollectionViewCell] = []
+    
 }
