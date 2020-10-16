@@ -75,7 +75,6 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
                 details: "Please connect to the internet and try again."
             )
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,8 +82,6 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         
         stopActivityIndicator()
     }
-    
-    // MARK: - Actions
     
 }
 
@@ -118,7 +115,6 @@ extension GoalsViewController {
         
         navigationItem.rightBarButtonItem = button
     }
-
 }
 
 // MARK: - Network Monitor
@@ -134,7 +130,6 @@ extension GoalsViewController: NetworkMonitorDelegate {
     func onDisconnect() {
         // nothing to do
     }
-    
 }
 
 // MARK: - Networking
@@ -153,10 +148,8 @@ extension GoalsViewController {
                 self.collectionView.reloadData()
                 self.stopActivityIndicator()
             }
-            
         }
     }
-    
 }
 
 // MARK: - Collection View
@@ -180,7 +173,6 @@ extension GoalsViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
 }
 
 extension GoalsViewController: UICollectionViewDelegate {
@@ -216,6 +208,7 @@ extension GoalsViewController: UICollectionViewDelegate {
             }
             
         } else {
+            
             viewModel?.isStatusBarHidden = true
             
             navigationController?.navigationBar.isHidden = true
@@ -227,6 +220,15 @@ extension GoalsViewController: UICollectionViewDelegate {
             
             viewModel?.expandedCell = selectedCell
             viewModel?.hiddenCells = collectionView.visibleCells.map { $0 as! GoalCollectionViewCell }.filter { $0 != selectedCell }
+            
+            GoalsDataStore.getSteps() { (result) in
+                
+                DispatchQueue.main.async {
+                    let stepCount = Int(result)
+                    selectedCell.detailsLabel.text = "You made \(stepCount) steps today"
+                }
+
+            }
             
             animator.addAnimations {
                 selectedCell.expand(in: collectionView)

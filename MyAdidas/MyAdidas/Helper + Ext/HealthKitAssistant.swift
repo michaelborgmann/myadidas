@@ -28,10 +28,9 @@ class HealthKitSetupAssistant {
             let bodyMassIndex = HKObjectType.quantityType(forIdentifier: .bodyMassIndex),
             let height = HKObjectType.quantityType(forIdentifier: .height),
             let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-            let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)
-            
-            //let stepsCount = HKQuantityType.quantityType(forIdentifier: .stepCount),
-            //let distanceType = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)
+            let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
+            let stepsCount = HKQuantityType.quantityType(forIdentifier: .stepCount),
+            let distanceType = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning)
         
         else {
             completion(false, HealthkitSetupError.dataTypeNotAvailable)
@@ -41,6 +40,7 @@ class HealthKitSetupAssistant {
         let healthKitTypesToWrite: Set<HKSampleType> = [
             bodyMassIndex,
             activeEnergy,
+            stepsCount,
             HKObjectType.workoutType()
         ]
         
@@ -51,6 +51,8 @@ class HealthKitSetupAssistant {
             bodyMassIndex,
             height,
             bodyMass,
+            stepsCount,
+            //distanceType,
             HKObjectType.workoutType()
         ]
         

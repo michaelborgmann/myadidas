@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class GoalCollectionViewCell: UICollectionViewCell {
     
@@ -17,11 +18,12 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
+    @IBOutlet weak var detailsLabel: UILabel!
     
     // MARK: - Properties
     
-    private var initialFrame: CGRect?
-    private var initialCornerRadius: CGFloat?
+    private var originalFrame: CGRect?
+    private var originalCornerRadius: CGFloat?
     
     private let gradient = CAGradientLayer()
     
@@ -56,7 +58,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
     }
     
 }
-
+    
 // MARK: - Setup
 
 extension GoalCollectionViewCell {
@@ -89,7 +91,6 @@ extension GoalCollectionViewCell {
         gradient.opacity = 0.8
         
         backgroundImageView.layer.insertSublayer(gradient, at: 0)
-
     }
     
 }
@@ -113,7 +114,6 @@ extension GoalCollectionViewCell {
         case .walking, .running:
             return "\(goal / 1000) km"
         }
-        
     }
     
 }
@@ -168,7 +168,6 @@ extension GoalCollectionViewCell {
             return
         }
         
-        //backgroundImageView.alpha = 0.25
         backgroundImageView.image = image
         backgroundImageView.isHidden = false
         
@@ -179,17 +178,25 @@ extension GoalCollectionViewCell {
 // MARK: - Appstore Card Animation
 
 extension GoalCollectionViewCell {
+    
+    private var adjustContentOffset: CGFloat {
+        guard let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaInsets.top else {
+            return 0
+        }
+        
+        return safeAreaTop > 0 ? 0 : 64
+    }
 
     func expand(in collectionView: UICollectionView) {
         
-        initialFrame = self.frame
-        initialCornerRadius = self.contentView.layer.cornerRadius
+        originalFrame = frame
+        originalCornerRadius = contentView.layer.cornerRadius
         
-        self.contentView.layer.cornerRadius = 0
+        contentView.layer.cornerRadius = 0
         
-        self.frame = CGRect(
+        frame = CGRect(
             x: 0,
-            y: collectionView.contentOffset.y,
+            y: collectionView.contentOffset.y + adjustContentOffset,
             width: collectionView.frame.width,
             height: collectionView.frame.height
         )
@@ -201,12 +208,12 @@ extension GoalCollectionViewCell {
 
     func collapse() {
         
-        self.contentView.layer.cornerRadius = initialCornerRadius ?? self.contentView.layer.cornerRadius
+        contentView.layer.cornerRadius = originalCornerRadius ?? contentView.layer.cornerRadius
         
-        self.frame = initialFrame ?? self.frame
+        frame = originalFrame ?? frame
         
-        initialFrame = nil
-        initialCornerRadius = nil
+        originalFrame = nil
+        originalCornerRadius = nil
         
         updateGradient(with: .colors(for: item))
         
@@ -214,9 +221,9 @@ extension GoalCollectionViewCell {
     }
     
     func hide(in collectionView: UICollectionView, frameOfSelectedCell: CGRect) {
-        initialFrame = self.frame
+        originalFrame = frame
         
-        let currentY = self.frame.origin.y
+        let currentY = frame.origin.y
         let newY: CGFloat
         
         if currentY < frameOfSelectedCell.origin.y {
@@ -227,15 +234,15 @@ extension GoalCollectionViewCell {
             newY = collectionView.contentOffset.y + collectionView.frame.height + offset
         }
         
-        self.frame.origin.y = newY
+        frame.origin.y = newY
         
         layoutIfNeeded()
     }
 
     func show() {
-        self.frame = initialFrame ?? self.frame
+        frame = originalFrame ?? frame
         
-        initialFrame = nil
+        originalFrame = nil
         
         layoutIfNeeded()
     }

@@ -33,6 +33,10 @@ class LaunchingViewController: UIViewController {
         
         HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
             
+            if error != nil {
+                print("Error authorizing HealthKit: \(error)")
+            }
+            
             guard authorized else {
                 
                 let baseMessage = "HealthKit Authorization Failed"

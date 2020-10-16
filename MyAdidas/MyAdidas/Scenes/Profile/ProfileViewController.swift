@@ -62,8 +62,6 @@ extension ProfileViewController {
     private enum ProfileSection: Int {
         case ageSexBloodType
         case weightHeightBMI
-        case readHealthKitData
-        case saveBMI
     }
     
     private enum ProfileDataError: Error {
@@ -222,27 +220,6 @@ extension ProfileViewController {
         )
         
         present(alert, animated: true, completion: nil)
-    }
-    
-}
-
-// MARK: - Table View
-
-extension ProfileViewController {
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let section = ProfileSection(rawValue: indexPath.section) else {
-            fatalError("A ProfileSection should map to the index path's section")
-        }
-        
-        switch section {
-        case .saveBMI:
-            saveBodyMassIndexToHealthKit()
-        case .readHealthKitData:
-            updateHealthInfo()
-        default: break
-        }
     }
     
 }

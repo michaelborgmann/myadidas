@@ -103,6 +103,7 @@
                 <outlet property="backgroundImageView" destination="y9J-Ds-xXe" id="Sa4-Ad-1ZX"/>
                 <outlet property="containerView" destination="dhn-Ym-n42" id="99R-hn-sKS"/>
                 <outlet property="descriptionLabel" destination="2dr-rf-0Yj" id="Xe3-r3-3uU"/>
+                <outlet property="detailsLabel" destination="dSS-5D-yu7" id="O00-h3-Sfk"/>
                 <outlet property="goalLabel" destination="4MC-7w-cNn" id="PEd-jV-RX3"/>
                 <outlet property="titleLabel" destination="6Wn-7b-1Um" id="gqH-4F-zfQ"/>
                 <outlet property="typeImageView" destination="c2K-Ll-1cS" id="b4d-j0-tnf"/>
