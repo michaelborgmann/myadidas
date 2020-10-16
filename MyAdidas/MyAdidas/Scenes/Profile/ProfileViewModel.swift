@@ -9,4 +9,6 @@ import Foundation
 
 class ProfileViewModel {
     
+    let userHealthProfile = UserHealthProfile()
+    
 }

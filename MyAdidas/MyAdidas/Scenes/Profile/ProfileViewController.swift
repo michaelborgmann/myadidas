@@ -53,8 +53,11 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
         navigationItem.rightBarButtonItem = update
     }
     
-    
+}
 
+// MARK: Enums & Constants
+
+extension ProfileViewController {
     
     private enum ProfileSection: Int {
         case ageSexBloodType
@@ -75,7 +78,11 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
         }
     }
     
-    private let userHealthProfile = UserHealthProfile()
+}
+
+// MARK: Update UI Components
+
+extension ProfileViewController {
     
     private func updateHealthInfo() {
         loadAndDisplayAgeSexAndBloodType()
@@ -87,72 +94,14 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
         
         do {
             let userAgeSexAndBloodType = try ProfileDataStore.getAgeSexAndBloodType()
-            userHealthProfile.age = userAgeSexAndBloodType.age
-            userHealthProfile.biologicalSex = userAgeSexAndBloodType.biologicalSex
-            userHealthProfile.bloodType = userAgeSexAndBloodType.bloodType
+            viewModel?.userHealthProfile.age = userAgeSexAndBloodType.age
+            viewModel?.userHealthProfile.biologicalSex = userAgeSexAndBloodType.biologicalSex
+            viewModel?.userHealthProfile.bloodType = userAgeSexAndBloodType.bloodType
             updateLabels()
         } catch let error {
             self.displayAlert(for: error)
         }
 
-    }
-    
-    private func updateLabels() {
-        if let age = userHealthProfile.age {
-            ageLabel.text = "\(age)"
-        }
-
-        if let biologicalSex = userHealthProfile.biologicalSex {
-            biologicalSexLabel.text = biologicalSex.stringRepresentation
-        }
-
-        if let bloodType = userHealthProfile.bloodType {
-            bloodTypeLabel.text = bloodType.stringRepresentation
-        }
-
-        if let weight = userHealthProfile.weightInKilograms {
-            let weightFormatter = MassFormatter()
-            weightFormatter.isForPersonMassUse = true
-            weightLabel.text = weightFormatter.string(fromKilograms: weight)
-        }
-            
-        if let height = userHealthProfile.heightInMeters {
-            let heightFormatter = LengthFormatter()
-            heightFormatter.isForPersonHeightUse = true
-            heightLabel.text = heightFormatter.string(fromMeters: height)
-        }
-           
-        if let bodyMassIndex = userHealthProfile.bodyMassIndex {
-            bodyMassIndexLabel.text = String(format: "%.02f", bodyMassIndex)
-        }
-
-        
-    }
-  
-    private func loadAndDisplayMostRecentHeight() {
-        //1. Use HealthKit to create the Height Sample Type
-        guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
-            print("Height Sample Type is no longer available in HealthKit")
-            return
-        }
-        
-        ProfileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
-              
-            guard let sample = sample else {
-              
-                if let error = error {
-                    self.displayAlert(for: error)
-                }
-                
-                return
-            }
-              
-            //2. Convert the height sample to meters, save to the profile model,
-            //   and update the user interface.
-            let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
-            self.userHealthProfile.heightInMeters = heightInMeters
-            self.updateLabels()
-        }
     }
     
     private func loadAndDisplayMostRecentWeight() {
@@ -174,15 +123,77 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
             }
               
             let weightInKilograms = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
-            self.userHealthProfile.weightInKilograms = weightInKilograms
+            self.viewModel?.userHealthProfile.weightInKilograms = weightInKilograms
             self.updateLabels()
         }
 
     }
+  
+    private func loadAndDisplayMostRecentHeight() {
+        
+        guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
+            print("Height Sample Type is no longer available in HealthKit")
+            return
+        }
+        
+        ProfileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
+              
+            guard let sample = sample else {
+              
+                if let error = error {
+                    self.displayAlert(for: error)
+                }
+                
+                return
+            }
+            
+            let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+            self.viewModel?.userHealthProfile.heightInMeters = heightInMeters
+            self.updateLabels()
+        }
+    }
+    
+    private func updateLabels() {
+        if let age = viewModel?.userHealthProfile.age {
+            ageLabel.text = "\(age)"
+        }
+
+        if let biologicalSex = viewModel?.userHealthProfile.biologicalSex {
+            biologicalSexLabel.text = biologicalSex.stringRepresentation
+        }
+
+        if let bloodType = viewModel?.userHealthProfile.bloodType {
+            bloodTypeLabel.text = bloodType.stringRepresentation
+        }
+
+        if let weight = viewModel?.userHealthProfile.weightInKilograms {
+            let weightFormatter = MassFormatter()
+            weightFormatter.isForPersonMassUse = true
+            weightLabel.text = weightFormatter.string(fromKilograms: weight)
+        }
+            
+        if let height = viewModel?.userHealthProfile.heightInMeters {
+            let heightFormatter = LengthFormatter()
+            heightFormatter.isForPersonHeightUse = true
+            heightLabel.text = heightFormatter.string(fromMeters: height)
+        }
+           
+        if let bodyMassIndex = viewModel?.userHealthProfile.bodyMassIndex {
+            bodyMassIndexLabel.text = String(format: "%.02f", bodyMassIndex)
+        }
+
+        
+    }
+    
+}
+
+// MARK: - Actions
+
+extension ProfileViewController {
     
     @objc private func saveBodyMassIndexToHealthKit() {
         
-        guard let bodyMassIndex = userHealthProfile.bodyMassIndex else {
+        guard let bodyMassIndex = viewModel?.userHealthProfile.bodyMassIndex else {
             displayAlert(for: ProfileDataError.missingBodyMassIndex)
             return
         }
@@ -212,6 +223,12 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
         
         present(alert, animated: true, completion: nil)
     }
+    
+}
+
+// MARK: - Table View
+
+extension ProfileViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
