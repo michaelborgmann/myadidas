@@ -86,7 +86,9 @@ extension GoalCollectionViewCell {
         gradient.startPoint = CGPoint(x: 1, y: 0.1)
         gradient.endPoint = CGPoint(x: 0.2, y: 1)
         
-        containerView.layer.insertSublayer(gradient, at: 0)
+        gradient.opacity = 0.8
+        
+        backgroundImageView.layer.insertSublayer(gradient, at: 0)
 
     }
     
@@ -166,7 +168,7 @@ extension GoalCollectionViewCell {
             return
         }
         
-        backgroundImageView.alpha = 0.25
+        //backgroundImageView.alpha = 0.25
         backgroundImageView.image = image
         backgroundImageView.isHidden = false
         
@@ -192,6 +194,8 @@ extension GoalCollectionViewCell {
             height: collectionView.frame.height
         )
         
+        updateGradient(with: .colors(for: item))
+        
         layoutIfNeeded()
     }
 
@@ -203,6 +207,8 @@ extension GoalCollectionViewCell {
         
         initialFrame = nil
         initialCornerRadius = nil
+        
+        updateGradient(with: .colors(for: item))
         
         layoutIfNeeded()
     }

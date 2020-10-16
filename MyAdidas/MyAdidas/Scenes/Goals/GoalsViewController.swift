@@ -186,11 +186,6 @@ extension GoalsViewController: UICollectionViewDataSource {
 extension GoalsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-        if collectionView.contentOffset.y < 0 ||
-            collectionView.contentOffset.y > collectionView.contentSize.height - collectionView.frame.height {
-            return
-        }
         
         let dampingRatio: CGFloat = 0.8
         let initialVelocity = CGVector.zero
