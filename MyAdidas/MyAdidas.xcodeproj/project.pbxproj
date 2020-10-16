@@ -229,7 +229,6 @@
 				4CB0279825385BBF00520ECE /* NetworkMonitor.swift */,
 				4CB027BA253876D800520ECE /* Gradient.swift */,
 				4CEB14622538EFFE0021CDE3 /* HealthKitAssistant.swift */,
-				4CEB14672538FBB00021CDE3 /* ProfileDataStore.swift */,
 				4CEB147B2538FF6A0021CDE3 /* Extensions.swift */,
 			);
 			path = "Helper + Ext";
@@ -312,6 +311,7 @@
 				4CEB1480253906D50021CDE3 /* Profile.storyboard */,
 				4CEB146C2538FCA90021CDE3 /* ProfileViewController.swift */,
 				4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */,
+				4CEB14672538FBB00021CDE3 /* ProfileDataStore.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

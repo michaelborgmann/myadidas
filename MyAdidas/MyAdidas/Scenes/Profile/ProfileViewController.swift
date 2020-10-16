@@ -17,8 +17,8 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
     // MARK: - Outlets
     
     @IBOutlet private var ageLabel:UILabel!
-    @IBOutlet private var bloodTypeLabel:UILabel!
     @IBOutlet private var biologicalSexLabel:UILabel!
+    @IBOutlet private var bloodTypeLabel:UILabel!
     @IBOutlet private var weightLabel:UILabel!
     @IBOutlet private var heightLabel:UILabel!
     @IBOutlet private var bodyMassIndexLabel:UILabel!
@@ -38,6 +38,12 @@ class ProfileViewController: UITableViewController, ViewModelBindalbe {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        updateHealthInfo()
     }
     
     private enum ProfileSection: Int {
