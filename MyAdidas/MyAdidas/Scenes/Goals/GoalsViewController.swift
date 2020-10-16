@@ -33,6 +33,13 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         return viewModel.isStatusBarHidden
     }
     
+    private var showStatusAndNavBar: Bool = true {
+        didSet {
+            navigationController?.navigationBar.isHidden = showStatusAndNavBar
+            viewModel?.isStatusBarHidden = showStatusAndNavBar
+        }
+    }
+    
     // MARK: - Lifecycle
     
     required public init?<T>(coder: NSCoder, viewModel: T) {
@@ -179,18 +186,14 @@ extension GoalsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let dampingRatio: CGFloat = 0.8
-        let initialVelocity = CGVector.zero
-        let springParameters = UISpringTimingParameters(dampingRatio: dampingRatio, initialVelocity: initialVelocity)
+        let springParameters = UISpringTimingParameters(dampingRatio: 0.8, initialVelocity: .zero)
         let animator = UIViewPropertyAnimator(duration: 0.5, timingParameters: springParameters)
         
-        self.view.isUserInteractionEnabled = false
+        view.isUserInteractionEnabled = false
         
         if let selectedCell = viewModel?.expandedCell {
             
-            viewModel?.isStatusBarHidden = false
-            
-            navigationController?.navigationBar.isHidden = false
+            showStatusAndNavBar = false
             
             animator.addAnimations {
                 selectedCell.collapse()
@@ -206,35 +209,27 @@ extension GoalsViewController: UICollectionViewDelegate {
                 self.viewModel?.expandedCell = nil
                 self.viewModel?.hiddenCells.removeAll()
             }
-            
+        
         } else {
             
-            viewModel?.isStatusBarHidden = true
+            let selectedCell = collectionView.cellForItem(at: indexPath)! as! GoalCollectionViewCell
+            let selectedCellFrame = selectedCell.frame
+            viewModel?.expandedCell = selectedCell
             
-            navigationController?.navigationBar.isHidden = true
+            viewModel?.updateSteps()
             
+            showStatusAndNavBar = true
             collectionView.isScrollEnabled = false
             
-            let selectedCell = collectionView.cellForItem(at: indexPath)! as! GoalCollectionViewCell
-            let frameOfSelectedCell = selectedCell.frame
-            
-            viewModel?.expandedCell = selectedCell
-            viewModel?.hiddenCells = collectionView.visibleCells.map { $0 as! GoalCollectionViewCell }.filter { $0 != selectedCell }
-            
-            GoalsDataStore.getSteps() { (result) in
-                
-                DispatchQueue.main.async {
-                    let stepCount = Int(result)
-                    selectedCell.detailsLabel.text = "You made \(stepCount) steps today"
-                }
-
-            }
+            viewModel?.hiddenCells = collectionView.visibleCells
+                .map { $0 as! GoalCollectionViewCell }
+                .filter { $0 != selectedCell }
             
             animator.addAnimations {
                 selectedCell.expand(in: collectionView)
                 
                 for cell in self.viewModel!.hiddenCells {
-                    cell.hide(in: collectionView, frameOfSelectedCell: frameOfSelectedCell)
+                    cell.hide(in: collectionView, selectedCellFrame: selectedCellFrame)
                 }
             }
         }
@@ -248,9 +243,7 @@ extension GoalsViewController: UICollectionViewDelegate {
         }
         
         animator.startAnimation()
-        
     }
-    
 }
 
 extension GoalsViewController: UICollectionViewDelegateFlowLayout {

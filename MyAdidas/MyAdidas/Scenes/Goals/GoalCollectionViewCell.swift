@@ -39,7 +39,6 @@ class GoalCollectionViewCell: UICollectionViewCell {
             updateTypeImage()
             updateBackgroundImage()
         }
-        
     }
     
     // MARK: - Lifetime
@@ -56,7 +55,6 @@ class GoalCollectionViewCell: UICollectionViewCell {
     func configure(with item: Item) {
         self.item = item
     }
-    
 }
     
 // MARK: - Setup
@@ -73,7 +71,6 @@ extension GoalCollectionViewCell {
         layer.shadowRadius = 10
         layer.shadowOpacity = 0.4
         layer.masksToBounds = false
-        
     }
     
     private func setupGradient(colors: Gradient = .grey) {
@@ -115,7 +112,6 @@ extension GoalCollectionViewCell {
             return "\(goal / 1000) km"
         }
     }
-    
 }
 
 // MARK: - Update UI Components
@@ -170,9 +166,7 @@ extension GoalCollectionViewCell {
         
         backgroundImageView.image = image
         backgroundImageView.isHidden = false
-        
     }
-    
 }
 
 // MARK: - Appstore Card Animation
@@ -180,7 +174,11 @@ extension GoalCollectionViewCell {
 extension GoalCollectionViewCell {
     
     private var adjustContentOffset: CGFloat {
-        guard let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaInsets.top else {
+        let keyWindow = UIApplication.shared.windows
+            .filter { $0.isKeyWindow }
+            .first
+            
+        guard let safeAreaTop = keyWindow?.safeAreaInsets.top else {
             return 0
         }
         
@@ -220,17 +218,17 @@ extension GoalCollectionViewCell {
         layoutIfNeeded()
     }
     
-    func hide(in collectionView: UICollectionView, frameOfSelectedCell: CGRect) {
+    func hide(in collectionView: UICollectionView, selectedCellFrame: CGRect) {
         originalFrame = frame
         
         let currentY = frame.origin.y
         let newY: CGFloat
         
-        if currentY < frameOfSelectedCell.origin.y {
-            let offset = frameOfSelectedCell.origin.y - currentY
+        if currentY < selectedCellFrame.origin.y {
+            let offset = selectedCellFrame.origin.y - currentY
             newY = collectionView.contentOffset.y - offset
         } else {
-            let offset = currentY - frameOfSelectedCell.maxY
+            let offset = currentY - selectedCellFrame.maxY
             newY = collectionView.contentOffset.y + collectionView.frame.height + offset
         }
         
@@ -246,7 +244,6 @@ extension GoalCollectionViewCell {
         
         layoutIfNeeded()
     }
-
 }
 
 // MARK: - Constants
@@ -256,5 +253,4 @@ extension GoalCollectionViewCell {
     private struct Style {
         static let labelColor = UIColor.white
     }
-    
 }

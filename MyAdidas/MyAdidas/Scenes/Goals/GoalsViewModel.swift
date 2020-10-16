@@ -38,4 +38,13 @@ class GoalsViewModel {
     var expandedCell: GoalCollectionViewCell?
     var hiddenCells: [GoalCollectionViewCell] = []
     
+    func updateSteps() {
+        GoalsDataStore.getSteps() { result in
+            DispatchQueue.main.async {
+                let stepCount = Int(result)
+                self.expandedCell?.detailsLabel.text = "You made \(stepCount) steps today"
+            }
+        }
+    }
+    
 }
