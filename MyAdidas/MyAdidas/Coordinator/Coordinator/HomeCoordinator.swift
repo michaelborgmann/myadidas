@@ -18,14 +18,25 @@ class HomeCoordinator: Coordinator {
     
     func present(animated: Bool, onDismissed: (() -> Void)?) {
         
-        NetworkMonitor.shared.start()
+        let viewController = LaunchingViewController()
+        viewController.delegate = self
+        
+        router.present(viewController, animated: true)
+        
+        /*
+        let viewController = LaunchingViewController.instantiate(with: SplashViewModel(), delegate: self)
+        router.present(viewController, animated: true)
+        
+        let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
         
         let viewModel = GoalsViewModel()
         viewModel.goals = Goal.persisted().first
         
-        let viewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
+        let childViewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
         
-        router.present(viewController, animated: true)
+        router = NavigationRouter(parentViewController: parentalViewController)
+        router.present(childViewController, animated: true)
+        */
     }
     
 }
@@ -33,6 +44,7 @@ class HomeCoordinator: Coordinator {
 // MARK: - Delegates
 
 extension HomeCoordinator: GoalsViewDelegate {
+    
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String) {
         
         let viewModel = ErrorViewModel()
@@ -48,6 +60,46 @@ extension HomeCoordinator: GoalsViewDelegate {
         
     }
     
+    func showProfile(_ goalsViewController: GoalsViewController) {
+        let viewModel = ProfileViewModel()
+        let viewController = ProfileViewController.instantiate(with: viewModel, delegate: self)
+        
+        router.present(viewController, animated: true)
+            
+    }
+    
+}
+
+extension HomeCoordinator: MainViewDelegate {
+    
+    func showGoals() {
+        
+        /*
+        let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
+        
+        let viewModel = GoalsViewModel()
+        viewModel.goals = Goal.persisted().first
+        
+        let viewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
+        
+        router = NavigationRouter(parentViewController: parentalViewController)
+        router.present(viewController, animated: true)
+        */
+        
+        
+        //let parentalViewController = ErrorViewController.instantiate(with: ErrorViewModel(), delegate: self)
+        
+        let viewModel = GoalsViewModel()
+        viewModel.goals = Goal.persisted().first
+        
+        let viewController = GoalsViewController.instantiate(with: viewModel, delegate: self)
+        
+        //router = NavigationRouter(parentViewController: parentalViewController)
+        router = NavigationRouter()
+        router.present(viewController, animated: true)
+ 
+    }
+    
 }
 
 extension HomeCoordinator: ErrorViewDelegate {
@@ -56,6 +108,14 @@ extension HomeCoordinator: ErrorViewDelegate {
         DispatchQueue.main.async {
             self.router.dismiss(animated: true)
         }
+    }
+    
+}
+
+extension HomeCoordinator: ProfileViewDelegate {
+    
+    func doSomething() {
+        
     }
     
 }

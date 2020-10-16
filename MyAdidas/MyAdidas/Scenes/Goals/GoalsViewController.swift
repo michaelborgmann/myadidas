@@ -9,6 +9,7 @@ import UIKit
 
 protocol GoalsViewDelegate: class {
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)
+    func showProfile(_ goalsViewController: GoalsViewController)
 }
 
 class GoalsViewController: UIViewController, ViewModelBindalbe {
@@ -16,6 +17,7 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     // MARK: Outlets
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var profileButton: UIButton!
     
     // MARK: Properties
     
@@ -44,6 +46,8 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        authorizeHealthKit()
+        
         if NetworkMonitor.shared.isConnected {
             fetchAllGoals()
         } else if viewModel?.goals != nil {
@@ -67,6 +71,34 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         
         stopActivityIndicator()
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func profile(_ sender: Any) {
+        delegate?.showProfile(self)
+    }
+    
+    private func authorizeHealthKit() {
+        
+        HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
+            
+            guard authorized else {
+                
+                let baseMessage = "HealthKit Authorization Failed"
+                
+                if let error = error {
+                    print("\(baseMessage). Reason: \(error.localizedDescription)")
+                } else {
+                    print(baseMessage)
+                }
+            
+                return
+            }
+          
+            print("HealthKit Successfully Authorized.")
+        }
+    }
+
 
 }
 

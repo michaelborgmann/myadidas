@@ -37,6 +37,15 @@
 		4CE48BC32524D51B0040AC46 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BC22524D51B0040AC46 /* GoalsViewModel.swift */; };
 		4CEB142D25389B280021CDE3 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB142C25389B280021CDE3 /* NavigationRouter.swift */; };
 		4CEB144B2538A4C00021CDE3 /* ModalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB144A2538A4C00021CDE3 /* ModalRouter.swift */; };
+		4CEB14632538EFFE0021CDE3 /* HealthKitAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB14622538EFFE0021CDE3 /* HealthKitAssistant.swift */; };
+		4CEB14682538FBB00021CDE3 /* ProfileDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB14672538FBB00021CDE3 /* ProfileDataStore.swift */; };
+		4CEB146D2538FCA90021CDE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB146C2538FCA90021CDE3 /* ProfileViewController.swift */; };
+		4CEB14772538FE960021CDE3 /* UserHealthProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB14762538FE960021CDE3 /* UserHealthProfile.swift */; };
+		4CEB147C2538FF6A0021CDE3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB147B2538FF6A0021CDE3 /* Extensions.swift */; };
+		4CEB1481253906D50021CDE3 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB1480253906D50021CDE3 /* Profile.storyboard */; };
+		4CEB1486253906E20021CDE3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */; };
+		4CEB148B253918C80021CDE3 /* LaunchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */; };
+		4CEB1493253918D60021CDE3 /* Launching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CEB1492253918D60021CDE3 /* Launching.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +102,15 @@
 		4CE48BC22524D51B0040AC46 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		4CEB142C25389B280021CDE3 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		4CEB144A2538A4C00021CDE3 /* ModalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalRouter.swift; sourceTree = "<group>"; };
+		4CEB14622538EFFE0021CDE3 /* HealthKitAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAssistant.swift; sourceTree = "<group>"; };
+		4CEB14672538FBB00021CDE3 /* ProfileDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataStore.swift; sourceTree = "<group>"; };
+		4CEB146C2538FCA90021CDE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4CEB14762538FE960021CDE3 /* UserHealthProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealthProfile.swift; sourceTree = "<group>"; };
+		4CEB147B2538FF6A0021CDE3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4CEB1480253906D50021CDE3 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingViewController.swift; sourceTree = "<group>"; };
+		4CEB1492253918D60021CDE3 /* Launching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launching.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				4C0A73CB25250ED20014C21E /* Goal.swift */,
+				4CEB14762538FE960021CDE3 /* UserHealthProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +222,9 @@
 				4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */,
 				4CB0279825385BBF00520ECE /* NetworkMonitor.swift */,
 				4CB027BA253876D800520ECE /* Gradient.swift */,
+				4CEB14622538EFFE0021CDE3 /* HealthKitAssistant.swift */,
+				4CEB14672538FBB00021CDE3 /* ProfileDataStore.swift */,
+				4CEB147B2538FF6A0021CDE3 /* Extensions.swift */,
 			);
 			path = "Helper + Ext";
 			sourceTree = "<group>";
@@ -250,8 +272,10 @@
 		4CE48BBB2524D1E70040AC46 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				4CEB14A9253995500021CDE3 /* Main */,
 				4CB027A025386CCA00520ECE /* Goals */,
 				4CB027A925386CFE00520ECE /* Error */,
+				4CEB14722538FCB60021CDE3 /* Profile */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -274,6 +298,25 @@
 				4CE48BB62524D0EF0040AC46 /* HomeCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4CEB14722538FCB60021CDE3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB1480253906D50021CDE3 /* Profile.storyboard */,
+				4CEB146C2538FCA90021CDE3 /* ProfileViewController.swift */,
+				4CEB1485253906E20021CDE3 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4CEB14A9253995500021CDE3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB1492253918D60021CDE3 /* Launching.storyboard */,
+				4CEB148A253918C80021CDE3 /* LaunchingViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +428,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEB1493253918D60021CDE3 /* Launching.storyboard in Resources */,
+				4CEB1481253906D50021CDE3 /* Profile.storyboard in Resources */,
 				2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */,
 				2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */,
 				2F8148D82524BF0600374941 /* Assets.xcassets in Resources */,
@@ -417,12 +462,17 @@
 				4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */,
 				4CB0279925385BBF00520ECE /* NetworkMonitor.swift in Sources */,
 				4CEB144B2538A4C00021CDE3 /* ModalRouter.swift in Sources */,
+				4CEB1486253906E20021CDE3 /* ProfileViewModel.swift in Sources */,
 				4C0A73BF25250D410014C21E /* Networking.swift in Sources */,
 				4CE48BC32524D51B0040AC46 /* GoalsViewModel.swift in Sources */,
 				2F8148D32524BF0300374941 /* GoalsViewController.swift in Sources */,
+				4CEB148B253918C80021CDE3 /* LaunchingViewController.swift in Sources */,
+				4CEB146D2538FCA90021CDE3 /* ProfileViewController.swift in Sources */,
 				4CB027BB253876D800520ECE /* Gradient.swift in Sources */,
 				4C0A73DB252519BD0014C21E /* ActivityIndicator.swift in Sources */,
+				4CEB14772538FE960021CDE3 /* UserHealthProfile.swift in Sources */,
 				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
+				4CEB14682538FBB00021CDE3 /* ProfileDataStore.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
 				4CB027B3253872C000520ECE /* ErrorViewModel.swift in Sources */,
@@ -431,6 +481,8 @@
 				2F0F60DF25260D1900BBD7CC /* GoalCollectionViewCell.swift in Sources */,
 				4C0A73B625250D1A0014C21E /* Service.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
+				4CEB14632538EFFE0021CDE3 /* HealthKitAssistant.swift in Sources */,
+				4CEB147C2538FF6A0021CDE3 /* Extensions.swift in Sources */,
 				4C0A73C725250D6C0014C21E /* API.swift in Sources */,
 				4CB027A525386CE200520ECE /* ErrorViewController.swift in Sources */,
 				4CEB142D25389B280021CDE3 /* NavigationRouter.swift in Sources */,

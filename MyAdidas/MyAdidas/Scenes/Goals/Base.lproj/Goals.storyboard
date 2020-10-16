@@ -45,26 +45,43 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="uOJ-Q5-8Zn"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YxJ-WJ-dpB">
+                                <rect key="frame" x="344" y="44.5" width="60" height="59"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="JZa-WR-Nmf"/>
+                                    <constraint firstAttribute="height" constant="60" id="OfN-CT-rKx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="person.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="profile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EXS-B8-cdi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hb3-mJ-uAe" secondAttribute="bottom" id="AH8-Jj-0br"/>
                             <constraint firstItem="hb3-mJ-uAe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ozq-ZX-htf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YxJ-WJ-dpB" secondAttribute="trailing" constant="10" id="SXh-xu-5v0"/>
                             <constraint firstAttribute="trailing" secondItem="hb3-mJ-uAe" secondAttribute="trailing" id="TI5-8j-joO"/>
                             <constraint firstItem="hb3-mJ-uAe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ydq-E2-GM0"/>
+                            <constraint firstItem="YxJ-WJ-dpB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bfh-k8-8LB"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="hb3-mJ-uAe" id="VrQ-jw-fz2"/>
+                        <outlet property="profileButton" destination="YxJ-WJ-dpB" id="e3l-Mc-g5Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="88"/>
+            <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
