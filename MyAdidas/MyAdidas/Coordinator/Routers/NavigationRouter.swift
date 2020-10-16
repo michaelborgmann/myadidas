@@ -8,14 +8,26 @@
 import UIKit
 
 public class NavigationRouter: NSObject {
-
+    
     private let navigationController: UINavigationController
     private let routerRootController: UIViewController?
     private var onDismissForViewController: [UIViewController: (() -> Void)] = [:]
     
+    public override init() {
+        navigationController = UINavigationController()
+        routerRootController = navigationController.viewControllers.first
+        
+        super.init()
+        
+        navigationController.delegate = self
+        
+        UIApplication.shared.windows.first?.rootViewController = navigationController
+    }
+    
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.routerRootController = navigationController.viewControllers.first
+        
         super.init()
         
         navigationController.delegate = self

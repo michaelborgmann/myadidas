@@ -45,18 +45,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We would like to use steps, walking, and running data to populate the app.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We would like to share data about steps, walking, and running with other apps</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

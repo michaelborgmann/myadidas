@@ -24,7 +24,7 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
     private let viewModel: ErrorViewModel?
     
     private weak var delegate: ErrorViewDelegate?
-    
+
     private let gradient = CAGradientLayer()
     
     // MARK: - Lifecycle
@@ -45,10 +45,6 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
         setupErrorMessage()
         
         NetworkMonitor.shared.delegate = self
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     private func setupGradient(colors: Gradient = .error) {
