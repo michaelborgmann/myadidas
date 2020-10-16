@@ -56,17 +56,34 @@
                                 <rect key="frame" x="0.0" y="357" width="294" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-5D-yu7">
-                                        <rect key="frame" x="126" y="0.0" width="42" height="21"/>
+                                        <rect key="frame" x="126" y="80" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zombie_hand" translatesAutoresizingMaskIntoConstraints="NO" id="A60-ZH-4QG">
+                                        <rect key="frame" x="234" y="20" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="7FK-h6-udI"/>
+                                            <constraint firstAttribute="width" constant="30" id="hXQ-N9-gzW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWs-xV-az1">
+                                        <rect key="frame" x="229.5" y="53" width="39.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="dSS-5D-yu7" firstAttribute="top" secondItem="fRQ-gc-Y1e" secondAttribute="top" id="0Ru-bt-NEa"/>
+                                    <constraint firstItem="dSS-5D-yu7" firstAttribute="top" secondItem="fRQ-gc-Y1e" secondAttribute="top" constant="80" id="0Ru-bt-NEa"/>
+                                    <constraint firstItem="WWs-xV-az1" firstAttribute="top" secondItem="A60-ZH-4QG" secondAttribute="bottom" constant="3" id="Gdr-vH-QU8"/>
+                                    <constraint firstAttribute="trailing" secondItem="A60-ZH-4QG" secondAttribute="trailing" constant="30" id="Jgf-Ot-dfZ"/>
+                                    <constraint firstItem="A60-ZH-4QG" firstAttribute="top" secondItem="fRQ-gc-Y1e" secondAttribute="top" constant="20" id="KXk-NM-R4e"/>
                                     <constraint firstItem="dSS-5D-yu7" firstAttribute="centerX" secondItem="fRQ-gc-Y1e" secondAttribute="centerX" id="NQN-nM-rni"/>
                                     <constraint firstAttribute="height" constant="128" id="WsA-4k-Agh"/>
+                                    <constraint firstItem="WWs-xV-az1" firstAttribute="centerX" secondItem="A60-ZH-4QG" secondAttribute="centerX" id="kvy-p2-JuU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -113,6 +130,7 @@
     </objects>
     <resources>
         <image name="step" width="136" height="134.5"/>
+        <image name="zombie_hand" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
