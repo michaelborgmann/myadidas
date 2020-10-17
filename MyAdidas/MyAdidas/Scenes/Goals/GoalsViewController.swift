@@ -188,25 +188,9 @@ extension GoalsViewController: UICollectionViewDelegate {
     
     private func updateReward(for selectedCell: GoalCollectionViewCell, with indexPath: IndexPath) {
         
-        guard
-            let reward = viewModel?.goals?.items[indexPath.row].reward
-        else {
-            selectedCell.trophyImageView.isHidden = true
-            selectedCell.pointLabel.isHidden = true
-            return
-        }
-        
-        selectedCell.trophyImageView.isHidden = false
-        selectedCell.pointLabel.isHidden = false
-        
-        selectedCell.trophyImageView.image = UIImage(named: reward.trophy.imageName)
-        selectedCell.pointLabel.text = "\(reward.points) Points"
-        
         let goal = self.viewModel?.goals?.items[indexPath.row].goal
         let stepsToday = self.viewModel?.stepsToday
-        let percent: Double = Double(stepsToday! / goal!)
-        
-        viewModel?.expandedCell?.detailsLabel.text = "You made \(viewModel?.stepsToday ?? 0) steps today"
+        let percent = Double(stepsToday! / goal!)
         
         let item = viewModel?.goals?.items[indexPath.row]
         let colors = Gradient.colors(for: item)

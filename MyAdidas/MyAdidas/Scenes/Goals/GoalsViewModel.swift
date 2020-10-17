@@ -49,4 +49,8 @@ class GoalsViewModel {
     
     var stepsToday: Int = 0
     
+    //let goal = self.viewModel?.goals?.items[indexPath.row].goal
+    //let stepsToday = self.viewModel?.stepsToday
+    //let percent: Double = Double(stepsToday! / goal!)
+    
 }

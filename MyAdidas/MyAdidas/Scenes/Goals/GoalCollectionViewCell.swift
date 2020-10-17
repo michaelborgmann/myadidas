@@ -41,6 +41,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
             
             updateTypeImage()
             updateBackgroundImage()
+            
+            updatePointLabel()
+            updateTrophyImage()
         }
     }
     
@@ -169,6 +172,33 @@ extension GoalCollectionViewCell {
         
         backgroundImageView.image = image
         backgroundImageView.isHidden = false
+    }
+    
+    private func updatePointLabel(color: UIColor = Style.labelColor) {
+        
+        guard let points = item?.reward?.points else {
+            pointLabel.isHidden = true
+            return
+        }
+        
+        pointLabel.isHidden = false
+        
+        pointLabel.text = "\(points) Points"
+        pointLabel.textColor = color
+    }
+    
+    private func updateTrophyImage() {
+        guard
+            let imageName = item?.reward?.trophy.imageName,
+            let image = UIImage(named: imageName)
+        else {
+            trophyImageView.isHidden = true
+            return
+        }
+        
+        trophyImageView.isHidden = false
+        
+        trophyImageView.image = image
     }
 }
 
