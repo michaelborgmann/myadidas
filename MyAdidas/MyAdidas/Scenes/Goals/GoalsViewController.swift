@@ -178,7 +178,7 @@ extension GoalsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: goal, goal: viewModel?.stepsToday)
+        cell.configure(with: goal, progressToday: viewModel?.stepsToday)
         
         return cell
     }
@@ -186,23 +186,13 @@ extension GoalsViewController: UICollectionViewDataSource {
 
 extension GoalsViewController: UICollectionViewDelegate {
     
-    private func updateReward(for selectedCell: GoalCollectionViewCell, with indexPath: IndexPath) {
+    private func animiateActivityRing() {
+        guard let selectedCell = viewModel?.expandedCell else {
+            return
+        }
         
-        viewModel?.expandedCell
-        
-        let goal = self.viewModel?.goals?.items[indexPath.row].goal
-        let stepsToday = self.viewModel?.stepsToday
-        let percent = Double(stepsToday! / goal!)
-        
-        let item = viewModel?.goals?.items[indexPath.row]
-        let colors = Gradient.colors(for: item)
-        
-        selectedCell.activityRingView.startColor = colors.end
-        selectedCell.activityRingView.endColor = colors.start
-        
-        
-        UIView.animate(withDuration: 0.5 * percent) {
-            selectedCell.activityRingView.progress = percent
+        UIView.animate(withDuration: 0.5 * selectedCell.progress) {
+            selectedCell.activityRingView.progress = selectedCell.progress
         }
     }
     
@@ -240,7 +230,7 @@ extension GoalsViewController: UICollectionViewDelegate {
             let selectedCellFrame = selectedCell.frame
             viewModel?.expandedCell = selectedCell
             
-            updateReward(for: selectedCell, with: indexPath)
+            animiateActivityRing()
             
             showStatusAndNavBar = true
             collectionView.isScrollEnabled = false

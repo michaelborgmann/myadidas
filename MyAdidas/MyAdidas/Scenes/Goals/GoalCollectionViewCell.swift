@@ -49,12 +49,12 @@ class GoalCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private var goal: Int? = nil {
+    private var progressToday: Int? = nil {
         didSet {
             
             guard
                 let type = item?.type,
-                let goal = goal
+                let goal = progressToday
             else {
                 detailsLabel.isHidden = true
                 return
@@ -84,9 +84,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Configuration
     
-    func configure(with item: Item, goal: Int?) {
+    func configure(with item: Item, progressToday: Int?) {
         self.item = item
-        self.goal = goal
+        self.progressToday = progressToday
     }
 }
     
@@ -309,6 +309,46 @@ extension GoalCollectionViewCell {
         
         layoutIfNeeded()
     }
+}
+
+// MARK: Activity Ring
+
+extension GoalCollectionViewCell {
+    
+    var progress: Double {
+        guard
+            let goal = item?.goal,
+            let progressToday = progressToday
+        else {
+            return 0
+        }
+        
+        return Double(progressToday / goal)
+    }
+    
+    func animateActivityRing() {
+        
+        guard
+            let goal = item?.goal,
+            let progressToday = progressToday
+        else {
+            return
+        }
+        
+        let progress = Double(progressToday / goal)
+        
+        let colors = Gradient.colors(for: item)
+        
+        activityRingView.startColor = colors.end
+        activityRingView.endColor = colors.start
+        
+        /*
+        UIView.animate(withDuration: 0.5 * progress) {
+            self.activityRingView.progress = progress
+        }
+        */
+    }
+    
 }
 
 // MARK: - Constants
