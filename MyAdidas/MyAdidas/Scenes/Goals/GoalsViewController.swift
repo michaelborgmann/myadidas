@@ -208,6 +208,13 @@ extension GoalsViewController: UICollectionViewDelegate {
         
         viewModel?.expandedCell?.detailsLabel.text = "You made \(viewModel?.stepsToday ?? 0) steps today"
         
+        let item = viewModel?.goals?.items[indexPath.row]
+        let colors = Gradient.colors(for: item)
+        
+        selectedCell.activityRingView.startColor = colors.end
+        selectedCell.activityRingView.endColor = colors.start
+        
+        
         UIView.animate(withDuration: 0.5 * percent) {
             selectedCell.activityRingView.progress = percent
         }
