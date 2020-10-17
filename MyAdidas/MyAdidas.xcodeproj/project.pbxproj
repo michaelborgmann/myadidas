@@ -31,9 +31,9 @@
 		4CB027B3253872C000520ECE /* ErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027B2253872C000520ECE /* ErrorViewModel.swift */; };
 		4CB027BB253876D800520ECE /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027BA253876D800520ECE /* Gradient.swift */; };
 		4CC454E22539FEC3005E2C5D /* GoalsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC454E12539FEC3005E2C5D /* GoalsDataStore.swift */; };
-		4CC7877C253B2521008B00A0 /* AnimatedCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7877B253B2521008B00A0 /* AnimatedCircleView.swift */; };
-		4CC78781253B255B008B00A0 /* AnimatedCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC78780253B255B008B00A0 /* AnimatedCircleView.xib */; };
-		4CC78786253B2B9D008B00A0 /* AnimatedCircleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC78785253B2B9D008B00A0 /* AnimatedCircleLayer.swift */; };
+		4CC7877C253B2521008B00A0 /* ActivityRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7877B253B2521008B00A0 /* ActivityRingView.swift */; };
+		4CC78781253B255B008B00A0 /* ActivityRingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC78780253B255B008B00A0 /* ActivityRingView.xib */; };
+		4CC78786253B2B9D008B00A0 /* ActivityRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC78785253B2B9D008B00A0 /* ActivityRingLayer.swift */; };
 		4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48B9E2524CFBE0040AC46 /* Router.swift */; };
 		4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BA72524CFF20040AC46 /* Coordinator.swift */; };
 		4CE48BAD2524D0520040AC46 /* AppDelegateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */; };
@@ -104,9 +104,9 @@
 		4CB027B2253872C000520ECE /* ErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewModel.swift; sourceTree = "<group>"; };
 		4CB027BA253876D800520ECE /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		4CC454E12539FEC3005E2C5D /* GoalsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDataStore.swift; sourceTree = "<group>"; };
-		4CC7877B253B2521008B00A0 /* AnimatedCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCircleView.swift; sourceTree = "<group>"; };
-		4CC78780253B255B008B00A0 /* AnimatedCircleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedCircleView.xib; sourceTree = "<group>"; };
-		4CC78785253B2B9D008B00A0 /* AnimatedCircleLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCircleLayer.swift; sourceTree = "<group>"; };
+		4CC7877B253B2521008B00A0 /* ActivityRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingView.swift; sourceTree = "<group>"; };
+		4CC78780253B255B008B00A0 /* ActivityRingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityRingView.xib; sourceTree = "<group>"; };
+		4CC78785253B2B9D008B00A0 /* ActivityRingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingLayer.swift; sourceTree = "<group>"; };
 		4CE48B9E2524CFBE0040AC46 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4CE48BA72524CFF20040AC46 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4CE48BAC2524D0520040AC46 /* AppDelegateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateRouter.swift; sourceTree = "<group>"; };
@@ -247,9 +247,9 @@
 		4C758575253B4CE50079F039 /* Animated Circle */ = {
 			isa = PBXGroup;
 			children = (
-				4CC78780253B255B008B00A0 /* AnimatedCircleView.xib */,
-				4CC7877B253B2521008B00A0 /* AnimatedCircleView.swift */,
-				4CC78785253B2B9D008B00A0 /* AnimatedCircleLayer.swift */,
+				4CC78780253B255B008B00A0 /* ActivityRingView.xib */,
+				4CC7877B253B2521008B00A0 /* ActivityRingView.swift */,
+				4CC78785253B2B9D008B00A0 /* ActivityRingLayer.swift */,
 				4C75857F253B53C80079F039 /* GradientGenerator.swift */,
 			);
 			path = "Animated Circle";
@@ -486,7 +486,7 @@
 				4CB027AE25386EE700520ECE /* Error.storyboard in Resources */,
 				2F8148D62524BF0300374941 /* Goals.storyboard in Resources */,
 				4CEB14E62539B20C0021CDE3 /* texgyreadventor-regular.otf in Resources */,
-				4CC78781253B255B008B00A0 /* AnimatedCircleView.xib in Resources */,
+				4CC78781253B255B008B00A0 /* ActivityRingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,10 +527,10 @@
 				4CEB14772538FE960021CDE3 /* UserHealthProfile.swift in Sources */,
 				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
 				4CEB14682538FBB00021CDE3 /* ProfileDataStore.swift in Sources */,
-				4CC78786253B2B9D008B00A0 /* AnimatedCircleLayer.swift in Sources */,
+				4CC78786253B2B9D008B00A0 /* ActivityRingLayer.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
-				4CC7877C253B2521008B00A0 /* AnimatedCircleView.swift in Sources */,
+				4CC7877C253B2521008B00A0 /* ActivityRingView.swift in Sources */,
 				4CB027B3253872C000520ECE /* ErrorViewModel.swift in Sources */,
 				4CE48BB72524D0EF0040AC46 /* HomeCoordinator.swift in Sources */,
 				4C0A73CC25250ED20014C21E /* Goal.swift in Sources */,

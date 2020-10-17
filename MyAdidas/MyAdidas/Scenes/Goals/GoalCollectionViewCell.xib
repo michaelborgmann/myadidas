@@ -75,7 +75,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-ks-TAl" userLabel="Activity Ring" customClass="AnimatedCircleView" customModule="MyAdidas" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-ks-TAl" userLabel="Activity Ring" customClass="ActivityRingView" customModule="MyAdidas" customModuleProvider="target">
                                         <rect key="frame" x="100" y="80.5" width="94" height="94"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>

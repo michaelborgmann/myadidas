@@ -8,70 +8,70 @@
 import UIKit
 
 @IBDesignable
-class AnimatedCircleView: UIView {
+class ActivityRingView: UIView {
     
     // MARK: - Inspectables
     
     @IBInspectable var startColor: UIColor {
-        get { UIColor(cgColor: animatedCircleLayer.startColor) }
-        set { animatedCircleLayer.startColor = newValue.cgColor }
+        get { UIColor(cgColor: activityRingLayer.startColor) }
+        set { activityRingLayer.startColor = newValue.cgColor }
     }
     
     @IBInspectable var endColor: UIColor {
-        get { UIColor(cgColor: animatedCircleLayer.endColor) }
-        set { animatedCircleLayer.endColor = newValue.cgColor }
+        get { UIColor(cgColor: activityRingLayer.endColor) }
+        set { activityRingLayer.endColor = newValue.cgColor }
     }
     
     @IBInspectable var backgroundRingColor: UIColor? {
         get {
-            guard let color = animatedCircleLayer.backgroundColor else {
+            guard let color = activityRingLayer.backgroundColor else {
                 return nil
             }
             
             return UIColor(cgColor: color)
         }
-        set { animatedCircleLayer.backgroundRingColor = newValue?.cgColor }
+        set { activityRingLayer.backgroundRingColor = newValue?.cgColor }
     }
     
     @IBInspectable var ringWidth: CGFloat {
-        get { animatedCircleLayer.ringWidth }
-        set { animatedCircleLayer.ringWidth = newValue }
+        get { activityRingLayer.ringWidth }
+        set { activityRingLayer.ringWidth = newValue }
     }
     
     @IBInspectable var progress: Double {
-        get { Double(animatedCircleLayer.progress) }
-        set { animatedCircleLayer.progress = CGFloat(newValue) }
+        get { Double(activityRingLayer.progress) }
+        set { activityRingLayer.progress = CGFloat(newValue) }
     }
     
     @IBInspectable var gradientImageScale: CGFloat {
-        get { animatedCircleLayer.gradientImageScale }
-        set { animatedCircleLayer.gradientImageScale = newValue
+        get { activityRingLayer.gradientImageScale }
+        set { activityRingLayer.gradientImageScale = newValue
         }
     }
     
     @IBInspectable var shadowOpacity: CGFloat {
-        get { animatedCircleLayer.endShadowOpacity }
-        set { animatedCircleLayer.endShadowOpacity = newValue }
+        get { activityRingLayer.endShadowOpacity }
+        set { activityRingLayer.endShadowOpacity = newValue }
     }
     
     @IBInspectable var hidesRingForZeroProgress: Bool {
-        get { animatedCircleLayer.hidesRingForZeroProgress }
-        set { animatedCircleLayer.hidesRingForZeroProgress = newValue }
+        get { activityRingLayer.hidesRingForZeroProgress }
+        set { activityRingLayer.hidesRingForZeroProgress = newValue }
     }
     
     @IBInspectable var allowsAntialiasing: Bool {
-        get { animatedCircleLayer.allowsAntialiasing }
-        set { animatedCircleLayer.allowsAntialiasing = newValue }
+        get { activityRingLayer.allowsAntialiasing }
+        set { activityRingLayer.allowsAntialiasing = newValue }
     }
     
     // MARK: - Properties
     
-    private var animatedCircleLayer: AnimatedCircleLayer {
-        return layer as! AnimatedCircleLayer
+    private var activityRingLayer: ActivityRingLayer {
+        return layer as! ActivityRingLayer
     }
     
     override class var layerClass: AnyClass {
-        return AnimatedCircleLayer.self
+        return ActivityRingLayer.self
     }
     
     // MARK: Lifecycle
@@ -101,7 +101,7 @@ class AnimatedCircleView: UIView {
 
     open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        animatedCircleLayer.disableProgressAnimation = true
+        activityRingLayer.disableProgressAnimation = true
     }
     
     // MARK: Accessibility

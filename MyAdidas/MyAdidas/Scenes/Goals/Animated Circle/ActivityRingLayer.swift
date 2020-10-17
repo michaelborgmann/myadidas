@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AnimatedCircleLayer: CALayer {
+class ActivityRingLayer: CALayer {
     
     // MARK: - Properties
     
@@ -94,7 +94,7 @@ class AnimatedCircleLayer: CALayer {
 
 // MARK: - Computed Properties
 
-extension AnimatedCircleLayer {
+extension ActivityRingLayer {
     
     var useGradient: Bool {
         startColor != endColor
@@ -177,7 +177,7 @@ extension AnimatedCircleLayer {
 
 // MARK: - Drawing
 
-extension AnimatedCircleLayer {
+extension ActivityRingLayer {
     
     private func contentImage() -> CGImage? {
         
