@@ -42,9 +42,11 @@ class GoalsViewModel {
         GoalsDataStore.getSteps() { result in
             DispatchQueue.main.async {
                 let stepCount = Int(result)
-                self.expandedCell?.detailsLabel.text = "You made \(stepCount) steps today"
+                self.stepsToday = stepCount
             }
         }
     }
+    
+    var stepsToday: Int = 0
     
 }

@@ -62,6 +62,8 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
         
         setupNavigationController()
+        
+        viewModel?.updateSteps()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -199,6 +201,16 @@ extension GoalsViewController: UICollectionViewDelegate {
         
         selectedCell.trophyImageView.image = UIImage(named: reward.trophy.imageName)
         selectedCell.pointLabel.text = "\(reward.points) Points"
+        
+        let goal = self.viewModel?.goals?.items[indexPath.row].goal
+        let stepsToday = self.viewModel?.stepsToday
+        let percent: Double = Double(stepsToday! / goal!)
+        
+        viewModel?.expandedCell?.detailsLabel.text = "You made \(viewModel?.stepsToday ?? 0) steps today"
+        
+        UIView.animate(withDuration: 0.5 * percent) {
+            selectedCell.activityRingView.progress = percent
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -226,14 +238,14 @@ extension GoalsViewController: UICollectionViewDelegate {
                 self.viewModel?.expandedCell = nil
                 self.viewModel?.hiddenCells.removeAll()
             }
+            
+            selectedCell.activityRingView.progress = 0
         
         } else {
             
             let selectedCell = collectionView.cellForItem(at: indexPath)! as! GoalCollectionViewCell
             let selectedCellFrame = selectedCell.frame
             viewModel?.expandedCell = selectedCell
-            
-            viewModel?.updateSteps()
             
             updateReward(for: selectedCell, with: indexPath)
             
