@@ -13,6 +13,19 @@ enum Trophy: String, Codable {
     case silver = "silver_medal"
     case bronze = "bronze_medal"
     case zombie = "zombie_hand"
+    
+    var imageName: String {
+        switch self {
+        case .gold:
+            return "gold_star"
+        case .silver:
+            return "silver_star"
+        case .bronze:
+            return "bronze_star"
+        case .zombie:
+            return "zombie_hand"
+        }
+    }
 }
 
 class Reward: Object, Codable {

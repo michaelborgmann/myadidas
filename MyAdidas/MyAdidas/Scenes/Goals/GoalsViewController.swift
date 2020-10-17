@@ -184,6 +184,23 @@ extension GoalsViewController: UICollectionViewDataSource {
 
 extension GoalsViewController: UICollectionViewDelegate {
     
+    private func updateReward(for selectedCell: GoalCollectionViewCell, with indexPath: IndexPath) {
+        
+        guard
+            let reward = viewModel?.goals?.items[indexPath.row].reward
+        else {
+            selectedCell.trophyImageView.isHidden = true
+            selectedCell.pointLabel.isHidden = true
+            return
+        }
+        
+        selectedCell.trophyImageView.isHidden = false
+        selectedCell.pointLabel.isHidden = false
+        
+        selectedCell.trophyImageView.image = UIImage(named: reward.trophy.imageName)
+        selectedCell.pointLabel.text = "\(reward.points) Points"
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let springParameters = UISpringTimingParameters(dampingRatio: 0.8, initialVelocity: .zero)
@@ -217,6 +234,8 @@ extension GoalsViewController: UICollectionViewDelegate {
             viewModel?.expandedCell = selectedCell
             
             viewModel?.updateSteps()
+            
+            updateReward(for: selectedCell, with: indexPath)
             
             showStatusAndNavBar = true
             collectionView.isScrollEnabled = false

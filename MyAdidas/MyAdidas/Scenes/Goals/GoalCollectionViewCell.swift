@@ -19,6 +19,8 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var trophyImageView: UIImageView!
+    @IBOutlet weak var pointLabel: UILabel!
     
     // MARK: - Properties
     
