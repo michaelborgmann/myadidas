@@ -66,13 +66,13 @@
                                 <rect key="frame" x="0.0" y="357" width="294" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-5D-yu7">
-                                        <rect key="frame" x="30" y="30" width="42" height="21"/>
+                                        <rect key="frame" x="126" y="30" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-ks-TAl" userLabel="Activity Ring" customClass="ActivityRingView" customModule="MyAdidas" customModuleProvider="target">
-                                        <rect key="frame" x="100" y="80.5" width="94" height="94"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-ks-TAl" userLabel="Activity Ring" customClass="ActivityRingView" customModule="MyAdidas" customModuleProvider="target">
+                                        <rect key="frame" x="100" y="81" width="94" height="94"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Xdh-ks-TAl" secondAttribute="height" multiplier="1:1" id="Rem-f6-PHj"/>
@@ -109,7 +109,8 @@
                                     <constraint firstItem="Xdh-ks-TAl" firstAttribute="leading" secondItem="fRQ-gc-Y1e" secondAttribute="leading" constant="100" id="EbR-0n-8E5"/>
                                     <constraint firstAttribute="trailing" secondItem="Xdh-ks-TAl" secondAttribute="trailing" constant="100" id="Sah-SU-TlX"/>
                                     <constraint firstAttribute="height" constant="128" id="WsA-4k-Agh"/>
-                                    <constraint firstItem="dSS-5D-yu7" firstAttribute="leading" secondItem="fRQ-gc-Y1e" secondAttribute="leading" constant="30" id="iPb-As-Tp0"/>
+                                    <constraint firstItem="dSS-5D-yu7" firstAttribute="centerX" secondItem="fRQ-gc-Y1e" secondAttribute="centerX" id="fbd-49-4LE"/>
+                                    <constraint firstItem="Xdh-ks-TAl" firstAttribute="top" secondItem="dSS-5D-yu7" secondAttribute="bottom" constant="30" id="mpI-nJ-fsQ"/>
                                     <constraint firstItem="Xdh-ks-TAl" firstAttribute="centerX" secondItem="fRQ-gc-Y1e" secondAttribute="centerX" id="yEt-dK-MXq"/>
                                 </constraints>
                             </view>

@@ -178,7 +178,7 @@ extension GoalsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: goal)
+        cell.configure(with: goal, goal: viewModel?.stepsToday)
         
         return cell
     }
@@ -187,6 +187,8 @@ extension GoalsViewController: UICollectionViewDataSource {
 extension GoalsViewController: UICollectionViewDelegate {
     
     private func updateReward(for selectedCell: GoalCollectionViewCell, with indexPath: IndexPath) {
+        
+        viewModel?.expandedCell
         
         let goal = self.viewModel?.goals?.items[indexPath.row].goal
         let stepsToday = self.viewModel?.stepsToday

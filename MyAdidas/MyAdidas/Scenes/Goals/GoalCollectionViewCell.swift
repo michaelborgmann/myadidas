@@ -44,6 +44,32 @@ class GoalCollectionViewCell: UICollectionViewCell {
             
             updatePointLabel()
             updateTrophyImage()
+            
+            updateActivityRing()
+        }
+    }
+    
+    private var goal: Int? = nil {
+        didSet {
+            
+            guard
+                let type = item?.type,
+                let goal = goal
+            else {
+                detailsLabel.isHidden = true
+                return
+            }
+            
+            detailsLabel.isHidden = false
+            
+            switch type {
+            case .step:
+                detailsLabel.text = "You made \(goal) steps today."
+            case .walking:
+                detailsLabel.text = "You walked \(goal) km today."
+            case .running:
+                detailsLabel.text = "You runned \(goal) km today."
+            }
         }
     }
     
@@ -58,8 +84,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Configuration
     
-    func configure(with item: Item) {
+    func configure(with item: Item, goal: Int?) {
         self.item = item
+        self.goal = goal
     }
 }
     
@@ -199,6 +226,11 @@ extension GoalCollectionViewCell {
         trophyImageView.isHidden = false
         
         trophyImageView.image = image
+    }
+    
+    
+    private func updateActivityRing() {
+
     }
 }
 
