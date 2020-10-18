@@ -69,8 +69,21 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         setupNavigationController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if viewModel?.expandedCell != nil {
+            hideStatusAndNavBar = true
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        guard viewModel?.expandedCell == nil else {
+            hideStatusAndNavBar = true
+            return
+        }
         
         if NetworkMonitor.shared.isConnected {
             fetchAllGoals()

@@ -55,7 +55,7 @@ extension HomeCoordinator: GoalsViewDelegate {
         let viewModel = WorkoutViewModel(item)
         let viewController = WorkoutViewController.instantiate(with: viewModel, delegate: self)
         
-        //router.present(viewController, animated: true)
+        router.present(viewController, animated: true)
     }
     
 }
