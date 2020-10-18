@@ -10,6 +10,7 @@ import UIKit
 protocol GoalsViewDelegate: class {
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)
     func showProfile(_ goalsViewController: GoalsViewController)
+    func startWorkout(_ goalsViewController: GoalsViewController, _ item: Item)
 }
 
 class GoalsViewController: UIViewController, ViewModelBindalbe {
@@ -33,10 +34,10 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         return viewModel.isStatusBarHidden
     }
     
-    private var showStatusAndNavBar: Bool = true {
+    private var hideStatusAndNavBar: Bool = true {
         didSet {
-            navigationController?.navigationBar.isHidden = showStatusAndNavBar
-            viewModel?.isStatusBarHidden = showStatusAndNavBar
+            navigationController?.navigationBar.isHidden = hideStatusAndNavBar
+            viewModel?.isStatusBarHidden = hideStatusAndNavBar
         }
     }
     
@@ -193,7 +194,9 @@ extension GoalsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: goal, progressToday: viewModel?.stepsToday)
+        cell.configure(with: goal, progressToday: viewModel?.stepsToday) {
+            self.startWorkoutAlert(goal)
+        }
         
         return cell
     }
@@ -220,7 +223,7 @@ extension GoalsViewController: UICollectionViewDelegate {
         
         if let selectedCell = viewModel?.expandedCell {
             
-            showStatusAndNavBar = false
+            hideStatusAndNavBar = false
             
             animator.addAnimations {
                 selectedCell.collapse()
@@ -247,8 +250,10 @@ extension GoalsViewController: UICollectionViewDelegate {
             
             animiateActivityRing()
             
-            showStatusAndNavBar = true
+            hideStatusAndNavBar = true
             collectionView.isScrollEnabled = false
+            
+            selectedCell.startStop(self)
             
             viewModel?.hiddenCells = collectionView.visibleCells
                 .map { $0 as! GoalCollectionViewCell }
@@ -285,6 +290,38 @@ extension GoalsViewController: UICollectionViewDelegateFlowLayout {
         return 75
     }
         
+}
+
+// MARK: - Alerts
+
+extension GoalsViewController {
+    
+    private func startWorkoutAlert(_ item: Item) {
+        
+        let alert = UIAlertController(
+            title: nil,
+            message: "Start a Walking session?",
+            preferredStyle: .alert
+        )
+        
+        let yesAction = UIAlertAction(
+            title: "Yes",
+            style: .default
+        ) { (action) in
+            self.delegate?.startWorkout(self, item)
+        }
+        
+        let noAction = UIAlertAction(
+            title: "No",
+            style: .cancel,
+            handler: nil
+        )
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Storyboard

@@ -13,10 +13,15 @@ public class ModalRouter: NSObject {
 
     private let navigationController = UINavigationController()
     private var onDismissForViewController: [UIViewController: (() -> Void)] = [:]
+    
+    private var isNavbarShown: Bool
 
-    public init(parentViewController: UIViewController) {
+    public init(parentViewController: UIViewController, showNavbar: Bool = true) {
         self.parentViewController = parentViewController
+        self.isNavbarShown = showNavbar
+        
         super.init()
+        
         navigationController.delegate = self
     }
 }
@@ -35,7 +40,11 @@ extension ModalRouter: Router {
     }
 
     private func presentModally(_ viewController: UIViewController, animated: Bool) {
-        //addCancelButton(to: viewController)
+        
+        if isNavbarShown {
+            addCancelButton(to: viewController)
+        }
+        
         navigationController.setViewControllers([viewController], animated: false)
         
         navigationController.modalPresentationStyle = .fullScreen

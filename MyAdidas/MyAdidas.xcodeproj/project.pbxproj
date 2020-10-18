@@ -24,6 +24,11 @@
 		4C0A73DB252519BD0014C21E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */; };
 		4C1B984A2525EC85008BA2E5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C1B98492525EC85008BA2E5 /* RealmSwift */; };
 		4C758580253B53C80079F039 /* GradientGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75857F253B53C80079F039 /* GradientGenerator.swift */; };
+		4C7585A0253C6E4A0079F039 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C75859F253C6E4A0079F039 /* Workout.swift */; };
+		4C7585A5253C6F2A0079F039 /* WorkoutDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7585A4253C6F2A0079F039 /* WorkoutDataStore.swift */; };
+		4C7585C2253CA5F10079F039 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7585C1253CA5F10079F039 /* WorkoutViewController.swift */; };
+		4C7585CB253CA6040079F039 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7585CA253CA6040079F039 /* WorkoutViewModel.swift */; };
+		4C7585D0253CA6120079F039 /* Workout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7585CF253CA6120079F039 /* Workout.storyboard */; };
 		4C831D6B2526910C0037F636 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C831D6A2526910C0037F636 /* HealthKit.framework */; };
 		4CB0279925385BBF00520ECE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0279825385BBF00520ECE /* NetworkMonitor.swift */; };
 		4CB027A525386CE200520ECE /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB027A425386CE200520ECE /* ErrorViewController.swift */; };
@@ -96,6 +101,11 @@
 		4C0A73CB25250ED20014C21E /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		4C0A73DA252519BD0014C21E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		4C75857F253B53C80079F039 /* GradientGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientGenerator.swift; sourceTree = "<group>"; };
+		4C75859F253C6E4A0079F039 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		4C7585A4253C6F2A0079F039 /* WorkoutDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataStore.swift; sourceTree = "<group>"; };
+		4C7585C1253CA5F10079F039 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		4C7585CA253CA6040079F039 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		4C7585CF253CA6120079F039 /* Workout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workout.storyboard; sourceTree = "<group>"; };
 		4C831D682526910C0037F636 /* MyAdidas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyAdidas.entitlements; sourceTree = "<group>"; };
 		4C831D6A2526910C0037F636 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4CB0279825385BBF00520ECE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -229,6 +239,8 @@
 			children = (
 				4C0A73CB25250ED20014C21E /* Goal.swift */,
 				4CEB14762538FE960021CDE3 /* UserHealthProfile.swift */,
+				4C75859F253C6E4A0079F039 /* Workout.swift */,
+				4C7585A4253C6F2A0079F039 /* WorkoutDataStore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +274,16 @@
 				4C758575253B4CE50079F039 /* Animated Circle */,
 			);
 			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		4C7585C6253CA5F60079F039 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				4C7585CF253CA6120079F039 /* Workout.storyboard */,
+				4C7585C1253CA5F10079F039 /* WorkoutViewController.swift */,
+				4C7585CA253CA6040079F039 /* WorkoutViewModel.swift */,
+			);
+			path = Workout;
 			sourceTree = "<group>";
 		};
 		4C831D692526910C0037F636 /* Frameworks */ = {
@@ -312,6 +334,7 @@
 				4CB027A025386CCA00520ECE /* Goals */,
 				4CB027A925386CFE00520ECE /* Error */,
 				4CEB14722538FCB60021CDE3 /* Profile */,
+				4C7585C6253CA5F60079F039 /* Workout */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -488,6 +511,7 @@
 				4CEB14E22539B2090021CDE3 /* texgyreadventor-bolditalic.otf in Resources */,
 				4CEB1481253906D50021CDE3 /* Profile.storyboard in Resources */,
 				2F8148DB2524BF0600374941 /* LaunchScreen.storyboard in Resources */,
+				4C7585D0253CA6120079F039 /* Workout.storyboard in Resources */,
 				2F0F60E025260D1900BBD7CC /* GoalCollectionViewCell.xib in Resources */,
 				4CEB14DE2539B2070021CDE3 /* texgyreadventor-italic.otf in Resources */,
 				2F8148D82524BF0600374941 /* Assets.xcassets in Resources */,
@@ -521,6 +545,7 @@
 			files = (
 				4CE48B9F2524CFBE0040AC46 /* Router.swift in Sources */,
 				4CB0279925385BBF00520ECE /* NetworkMonitor.swift in Sources */,
+				4C7585C2253CA5F10079F039 /* WorkoutViewController.swift in Sources */,
 				4CEB144B2538A4C00021CDE3 /* ModalRouter.swift in Sources */,
 				4CEB1486253906E20021CDE3 /* ProfileViewModel.swift in Sources */,
 				4C0A73BF25250D410014C21E /* Networking.swift in Sources */,
@@ -528,6 +553,7 @@
 				4CE48BC32524D51B0040AC46 /* GoalsViewModel.swift in Sources */,
 				4C758580253B53C80079F039 /* GradientGenerator.swift in Sources */,
 				2F8148D32524BF0300374941 /* GoalsViewController.swift in Sources */,
+				4C7585A5253C6F2A0079F039 /* WorkoutDataStore.swift in Sources */,
 				4CEB148B253918C80021CDE3 /* LaunchingViewController.swift in Sources */,
 				4CEB146D2538FCA90021CDE3 /* ProfileViewController.swift in Sources */,
 				4CB027BB253876D800520ECE /* Gradient.swift in Sources */,
@@ -536,6 +562,7 @@
 				4CE48BA82524CFF30040AC46 /* Coordinator.swift in Sources */,
 				4CEB14682538FBB00021CDE3 /* ProfileDataStore.swift in Sources */,
 				4CC78786253B2B9D008B00A0 /* ActivityRingLayer.swift in Sources */,
+				4C7585A0253C6E4A0079F039 /* Workout.swift in Sources */,
 				2F8148CF2524BF0300374941 /* AppDelegate.swift in Sources */,
 				4CE48BB22524D08C0040AC46 /* StoryboardInstantiable.swift in Sources */,
 				4CC7877C253B2521008B00A0 /* ActivityRingView.swift in Sources */,
@@ -544,6 +571,7 @@
 				4C0A73CC25250ED20014C21E /* Goal.swift in Sources */,
 				2F0F60DF25260D1900BBD7CC /* GoalCollectionViewCell.swift in Sources */,
 				4C0A73B625250D1A0014C21E /* Service.swift in Sources */,
+				4C7585CB253CA6040079F039 /* WorkoutViewModel.swift in Sources */,
 				2F8148D12524BF0300374941 /* SceneDelegate.swift in Sources */,
 				4CEB14632538EFFE0021CDE3 /* HealthKitAssistant.swift in Sources */,
 				4CEB147C2538FF6A0021CDE3 /* Extensions.swift in Sources */,

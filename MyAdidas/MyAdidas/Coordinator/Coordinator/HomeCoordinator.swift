@@ -40,9 +40,8 @@ extension HomeCoordinator: GoalsViewDelegate {
         
         let viewController = ErrorViewController.instantiate(with: viewModel, delegate: self)
         
-        router = ModalRouter(parentViewController: goalsViewController)
+        router = ModalRouter(parentViewController: goalsViewController, showNavbar: false)
         router.present(viewController, animated: true)
-        
     }
     
     func showProfile(_ goalsViewController: GoalsViewController) {
@@ -50,7 +49,13 @@ extension HomeCoordinator: GoalsViewDelegate {
         let viewController = ProfileViewController.instantiate(with: viewModel, delegate: self)
         
         router.present(viewController, animated: true)
-            
+    }
+    
+    func startWorkout(_ goalsViewController: GoalsViewController, _ item: Item) {
+        let viewModel = WorkoutViewModel(item)
+        let viewController = WorkoutViewController.instantiate(with: viewModel, delegate: self)
+        
+        //router.present(viewController, animated: true)
     }
     
 }
@@ -65,9 +70,7 @@ extension HomeCoordinator: MainViewDelegate {
         
         router = NavigationRouter()
         router.present(viewController, animated: true)
- 
     }
-    
 }
 
 extension HomeCoordinator: ErrorViewDelegate {
@@ -77,13 +80,23 @@ extension HomeCoordinator: ErrorViewDelegate {
             self.router.dismiss(animated: true)
         }
     }
-    
 }
 
 extension HomeCoordinator: ProfileViewDelegate {
     
     func doSomething() {
         
+    }
+}
+
+extension HomeCoordinator: WorkoutViewDelegate {
+    
+    func save() {
+        print(save)
+    }
+    
+    func stop() {
+        print(stop)
     }
     
 }

@@ -118,5 +118,4 @@ class ActivityRingView: UIView {
         }
         set { overriddenAccessibilityValue = newValue }
     }
-    
 }

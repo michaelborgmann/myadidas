@@ -24,12 +24,19 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var activityRingView: ActivityRingView!
     @IBOutlet weak var workoutButton: UIButton!
     
+    @IBAction func startStop(_ sender: Any) {
+        workoutHandler?()
+    }
+    
     // MARK: - Properties
+    
+    private let gradient = CAGradientLayer()
     
     private var originalFrame: CGRect?
     private var originalCornerRadius: CGFloat?
     
-    private let gradient = CAGradientLayer()
+    private var workoutHandler: (() -> Void)? = nil
+    
     
     private var item: Item? = nil {
         
@@ -90,9 +97,10 @@ class GoalCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Cell Configuration
     
-    func configure(with item: Item, progressToday: Int?) {
+    func configure(with item: Item, progressToday: Int?, workoutHandler: (() -> Void)?) {
         self.item = item
         self.progressToday = progressToday
+        self.workoutHandler = workoutHandler
     }
 }
     
@@ -272,7 +280,6 @@ extension GoalCollectionViewCell {
         
         workoutButton.isHidden = false
         workoutButton.titleLabel?.text = "START"
-        
     }
 }
 
