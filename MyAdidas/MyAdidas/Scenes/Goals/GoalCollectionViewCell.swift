@@ -22,6 +22,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trophyImageView: UIImageView!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var activityRingView: ActivityRingView!
+    @IBOutlet weak var workoutButton: UIButton!
     
     // MARK: - Properties
     
@@ -46,6 +47,8 @@ class GoalCollectionViewCell: UICollectionViewCell {
             updateTrophyImage()
             
             updateActivityRing()
+            
+            updateWorkoutButton()
         }
     }
     
@@ -114,8 +117,8 @@ extension GoalCollectionViewCell {
         gradient.frame = bounds
         
         gradient.colors = [
-            colors.start.cgColor,
-            colors.end.cgColor
+            colors.light.cgColor,
+            colors.dark.cgColor
         ]
         
         gradient.startPoint = CGPoint(x: 1, y: 0.1)
@@ -185,8 +188,8 @@ extension GoalCollectionViewCell {
         gradient.frame = bounds
         
         gradient.colors = [
-            colors.start.cgColor,
-            colors.end.cgColor
+            colors.light.cgColor,
+            colors.dark.cgColor
         ]
     }
     
@@ -250,8 +253,26 @@ extension GoalCollectionViewCell {
     private func updateActivityRing() {
         let colors = Gradient.colors(for: item)
         
-        activityRingView.startColor = colors.end
-        activityRingView.endColor = colors.start
+        activityRingView.startColor = colors.dark
+        activityRingView.endColor = colors.light
+    }
+    
+    private func updateWorkoutButton() {
+        
+        let colors = Gradient.colors(for: item)
+        workoutButton.setTitleColor(colors.dark, for: .normal)
+        
+        guard
+            let type = item?.type,
+            type != .step
+        else {
+            workoutButton.isHidden = true
+            return
+        }
+        
+        workoutButton.isHidden = false
+        workoutButton.titleLabel?.text = "START"
+        
     }
 }
 

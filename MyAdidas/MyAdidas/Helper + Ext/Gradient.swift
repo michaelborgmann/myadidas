@@ -15,7 +15,7 @@ enum Gradient: String {
     case grey
     case error
     
-    var start: UIColor {
+    var light: UIColor {
         guard
             let color = UIColor(named: "gradient_\(self.rawValue)_start")
         else {
@@ -25,7 +25,7 @@ enum Gradient: String {
         return color
     }
     
-    var end: UIColor {
+    var dark: UIColor {
         guard
             let color = UIColor(named: "gradient_\(self.rawValue)_end")
         else {

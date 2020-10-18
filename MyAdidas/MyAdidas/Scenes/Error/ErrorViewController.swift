@@ -52,8 +52,8 @@ class ErrorViewController: UIViewController, ViewModelBindalbe {
         gradient.frame = view.frame
         
         gradient.colors = [
-            colors.start.cgColor,
-            colors.end.cgColor
+            colors.light.cgColor,
+            colors.dark.cgColor
         ]
         
         gradient.startPoint = CGPoint(x: 0.5, y: 0)
