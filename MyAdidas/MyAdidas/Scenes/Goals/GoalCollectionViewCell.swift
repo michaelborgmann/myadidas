@@ -248,7 +248,10 @@ extension GoalCollectionViewCell {
     
     
     private func updateActivityRing() {
-        // TODO: Refactor from GoalsViewController
+        let colors = Gradient.colors(for: item)
+        
+        activityRingView.startColor = colors.end
+        activityRingView.endColor = colors.start
     }
 }
 
@@ -347,13 +350,6 @@ extension GoalCollectionViewCell {
         let progressInPercent = Double(progressToday) / Double(goal)
         
         return progressInPercent > 0.0 ? progressInPercent : zeroForDrawingProgress
-    }
-    
-    func animateActivityRing() {
-        let colors = Gradient.colors(for: item)
-        
-        activityRingView.startColor = colors.end
-        activityRingView.endColor = colors.start
     }
 }
 
