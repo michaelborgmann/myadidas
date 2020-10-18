@@ -10,7 +10,7 @@ import HealthKit
 class WorkoutDataStore {
     
     class func save(
-        walkingWorkout: WorkoutInterval,
+        workout: Workout,
         completion: @escaping ((Bool, Error?) -> Swift.Void)
     ) {
     
@@ -25,7 +25,7 @@ class WorkoutDataStore {
             device: .local()
         )
             
-        builder.beginCollection(withStart: walkingWorkout.start) { (success, error) in
+        builder.beginCollection(withStart: workout.start) { (success, error) in
             
             guard success else {
                 completion(false, error)
@@ -46,14 +46,14 @@ class WorkoutDataStore {
             }
                 
             let unit = HKUnit.kilocalorie()
-            let totalEnergyBurned = walkingWorkout.totalEnergyBurned
+            let totalEnergyBurned = workout.totalEnergyBurned
             let quantity = HKQuantity(unit: unit, doubleValue: totalEnergyBurned)
             
             let sample = HKCumulativeQuantitySample (
                 type: activeEnergyBurned,
                 quantity: quantity,
-                start: walkingWorkout.start,
-                end: walkingWorkout.end
+                start: workout.start,
+                end: workout.end
             )
             
             builder.add([sample]) { (success, error) in
@@ -63,7 +63,7 @@ class WorkoutDataStore {
                 }
                   
                 
-                builder.endCollection(withEnd: walkingWorkout.end) { (success, error) in
+                builder.endCollection(withEnd: workout.end) { (success, error) in
                     guard success else {
                         completion(false, error)
                         return

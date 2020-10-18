@@ -128,7 +128,38 @@ extension WorkoutViewController {
         viewModel?.session.end()
         updateTimeLabel()
         
-        navigationController?.popViewController(animated: true)
+        guard let currentWorkout = viewModel?.session.completeWorkout else {
+          fatalError("Shouldn't be able to finish workout without saving.")
+        }
+        
+        WorkoutDataStore.save(workout: currentWorkout) { (success, error) in
+        
+            if success {
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                self.showSavingFailureAlert()
+            }
+        }
+    }
+    
+    private func showSavingFailureAlert() {
+        
+        let alert = UIAlertController(
+            title: nil,
+            message: "There was a problem saving your workout",
+            preferredStyle: .alert
+        )
+        
+        let okayAction = UIAlertAction(
+            title: "O.K.",
+            style: .default,
+            handler: nil
+        )
+        
+        alert.addAction(okayAction)
+        present(alert, animated: true, completion: nil)
     }
     
 }
