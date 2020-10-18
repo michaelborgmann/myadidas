@@ -7,6 +7,8 @@
 
 import UIKit
 
+let hackAlert = true
+
 protocol GoalsViewDelegate: class {
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)
     func showProfile(_ goalsViewController: GoalsViewController)
@@ -266,7 +268,9 @@ extension GoalsViewController: UICollectionViewDelegate {
             hideStatusAndNavBar = true
             collectionView.isScrollEnabled = false
             
-            selectedCell.startStop(self)
+            if hackAlert {
+                selectedCell.startStop(self)
+            }
             
             viewModel?.hiddenCells = collectionView.visibleCells
                 .map { $0 as! GoalCollectionViewCell }

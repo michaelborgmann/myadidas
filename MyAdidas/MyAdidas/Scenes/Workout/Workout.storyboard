@@ -16,9 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvj-vg-vi4">
-                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:23:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-H1-nTy">
+                                <rect key="frame" x="109.5" y="418.5" width="195" height="59"/>
+                                <fontDescription key="fontDescription" name="TeXGyreAdventor-BoldItalic" family="TeX Gyre Adventor" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -26,10 +26,13 @@
                         <viewLayoutGuide key="safeArea" id="LNo-vu-bJI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gvj-vg-vi4" firstAttribute="centerY" secondItem="hcV-AS-1UY" secondAttribute="centerY" id="64D-fa-sR5"/>
-                            <constraint firstItem="gvj-vg-vi4" firstAttribute="centerX" secondItem="hcV-AS-1UY" secondAttribute="centerX" id="BL2-68-bHg"/>
+                            <constraint firstItem="eEt-H1-nTy" firstAttribute="centerY" secondItem="hcV-AS-1UY" secondAttribute="centerY" id="bU2-dV-Zaz"/>
+                            <constraint firstItem="eEt-H1-nTy" firstAttribute="centerX" secondItem="hcV-AS-1UY" secondAttribute="centerX" id="xi5-qJ-g1E"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="timeLabel" destination="eEt-H1-nTy" id="Wes-7o-knP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qij-YA-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,7 +10,7 @@ import HealthKit
 class WorkoutDataStore {
     
     class func save(
-        walkingWorkout: WalkingWorkout,
+        walkingWorkout: WorkoutInterval,
         completion: @escaping ((Bool, Error?) -> Swift.Void)
     ) {
     

@@ -15,6 +15,10 @@ protocol WorkoutViewDelegate: class {
 
 class WorkoutViewController: UIViewController, ViewModelBindalbe {
     
+    // MARK: - Outlets
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
     // MARK: - Properties
     
     private let viewModel: WorkoutViewModel?
@@ -25,20 +29,25 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
     
     private var hideStatusAndNavBar: Bool = true {
         didSet {
-            navigationController?.navigationBar.isHidden = false
-//            viewModel?.isStatusBarHidden = hideStatusAndNavBar
+            navigationController?.navigationBar.isHidden = true
         }
     }
+    
+    private lazy var durationFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = [.pad]
+        
+        return formatter
+    }()
     
     // MARK: - Lifecycle
     
     required public init?<T>(coder: NSCoder, viewModel: T) {
         self.viewModel = viewModel as? WorkoutViewModel
         super.init(coder: coder)
-    }
-    
-    @objc func back(sender: UIBarButtonItem) {
-        _ = navigationController?.popViewController(animated: true)
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +60,13 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         hideStatusAndNavBar = false
         
         setupGradient()
+        
+        updateTimeLabel()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(finishWorkout))
+        view.addGestureRecognizer(tap)
+        
+        beginWorkout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +93,53 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
 
     }
     
+    private func setupUI() {
+        updateTimeLabel()
+    }
+    
+    private func updateTimeLabel() {
+
+        timeLabel.textColor = Style.labelColor
+
+        guard let startDate = viewModel?.session.startDate else {
+            timeLabel.text = "00:00:00"
+            return
+        }
+        
+        let duration = Date().timeIntervalSince(startDate)
+        timeLabel.text = durationFormatter.string(from: duration)
+    }
+    
+}
+
+// MARK: - Actions
+
+extension WorkoutViewController {
+    
+    func beginWorkout() {
+        viewModel?.session.start()
+        
+        viewModel?.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            self.updateTimeLabel()
+        }
+    }
+    
+    @objc func finishWorkout() {
+        viewModel?.session.end()
+        updateTimeLabel()
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+// MARK: - Constants
+
+extension WorkoutViewController {
+    
+    private struct Style {
+        static let labelColor = UIColor.white
+    }
 }
 
 // MARK: - Storyboard

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WalkingWorkout {
+struct WorkoutInterval {
     
     var start: Date
     var end: Date
@@ -23,10 +23,35 @@ struct WalkingWorkout {
   
     var totalEnergyBurned: Double {
         
-        let walkingCaloriesPerHour: Double = 250
+        let calories: Double = 250
         let hours: Double = duration / 3600
-        let totalCalories = walkingCaloriesPerHour * hours
+        let totalCalories = calories * hours
         
         return totalCalories
+    }
+}
+
+struct Workout {
+    
+    var start: Date
+    var end: Date
+    var intervals: [WorkoutInterval]
+    
+    init(with intervals: [WorkoutInterval]) {
+        self.start = intervals.first!.start
+        self.end = intervals.last!.end
+        self.intervals = intervals
+    }
+    
+    var totalEnergyBurned: Double {
+        return intervals.reduce(0) { (result, interval) in
+            result + interval.totalEnergyBurned
+        }
+    }
+    
+    var duration: TimeInterval {
+        return intervals.reduce(0) { (result, interval) in
+            result + interval.duration
+        }
     }
 }
