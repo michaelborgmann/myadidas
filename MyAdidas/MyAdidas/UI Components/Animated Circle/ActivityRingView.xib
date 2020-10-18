@@ -30,7 +30,7 @@
                     <color key="value" name="gradient_blue_end"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                    <real key="value" value="1.5"/>
+                    <real key="value" value="0.29999999999999999"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="71" y="109"/>

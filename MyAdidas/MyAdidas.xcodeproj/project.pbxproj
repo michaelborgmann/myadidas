@@ -186,6 +186,7 @@
 				4CE48BA32524CFC40040AC46 /* Coordinator */,
 				4C0A73D025250ED60014C21E /* Models */,
 				4CE48BBB2524D1E70040AC46 /* Scenes */,
+				4C758590253C5D7F0079F039 /* UI Components */,
 				4C0A73BA25250D1E0014C21E /* Service */,
 				4C0A73DF252519C40014C21E /* Helper + Ext */,
 				4CEB14C32539AE100021CDE3 /* Resources */,
@@ -255,6 +256,14 @@
 			path = "Animated Circle";
 			sourceTree = "<group>";
 		};
+		4C758590253C5D7F0079F039 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				4C758575253B4CE50079F039 /* Animated Circle */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 		4C831D692526910C0037F636 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,7 +281,6 @@
 				2F0F60DE25260D1900BBD7CC /* GoalCollectionViewCell.xib */,
 				2F0F60DD25260D1900BBD7CC /* GoalCollectionViewCell.swift */,
 				4CC454E12539FEC3005E2C5D /* GoalsDataStore.swift */,
-				4C758575253B4CE50079F039 /* Animated Circle */,
 			);
 			path = Goals;
 			sourceTree = "<group>";

@@ -61,9 +61,11 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
         
-        setupNavigationController()
+        viewModel?.updateSteps() {
+            self.updatePoints()
+        }
         
-        viewModel?.updateSteps()
+        setupNavigationController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -123,7 +125,20 @@ extension GoalsViewController {
         button.tintColor = .black
         
         navigationItem.rightBarButtonItem = button
+        
     }
+    
+    private func updatePoints() {
+        guard let pointsToday = viewModel?.pointsToday else {
+            return
+        }
+        
+        let points = UIBarButtonItem(title: "\(pointsToday) Points", style: .plain, target: self, action: nil)
+        points.tintColor = .black
+        
+        navigationItem.leftBarButtonItem = points
+    }
+    
 }
 
 // MARK: - Network Monitor

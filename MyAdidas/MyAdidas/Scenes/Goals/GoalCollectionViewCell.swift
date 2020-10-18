@@ -70,6 +70,9 @@ class GoalCollectionViewCell: UICollectionViewCell {
             case .running:
                 detailsLabel.text = "You runned \(goal) km today."
             }
+            
+            updatePointLabel()
+            updateTrophyImage()
         }
     }
     
@@ -145,6 +148,17 @@ extension GoalCollectionViewCell {
             return "\(goal / 1000) km"
         }
     }
+    
+    private var goalReached: Bool {
+        guard
+            let progress = progressToday,
+            let goal = item?.goal
+        else {
+            return false
+        }
+        
+        return progress >= goal ? true : false
+    }
 }
 
 // MARK: - Update UI Components
@@ -203,7 +217,10 @@ extension GoalCollectionViewCell {
     
     private func updatePointLabel(color: UIColor = Style.labelColor) {
         
-        guard let points = item?.reward?.points else {
+        guard
+            let points = item?.reward?.points,
+            goalReached
+        else {
             pointLabel.isHidden = true
             return
         }
@@ -217,7 +234,8 @@ extension GoalCollectionViewCell {
     private func updateTrophyImage() {
         guard
             let imageName = item?.reward?.trophy.imageName,
-            let image = UIImage(named: imageName)
+            let image = UIImage(named: imageName),
+            goalReached
         else {
             trophyImageView.isHidden = true
             return
@@ -230,7 +248,7 @@ extension GoalCollectionViewCell {
     
     
     private func updateActivityRing() {
-
+        // TODO: Refactor from GoalsViewController
     }
 }
 
@@ -316,39 +334,27 @@ extension GoalCollectionViewCell {
 extension GoalCollectionViewCell {
     
     var progress: Double {
+        
+        let zeroForDrawingProgress = 0.00001
+        
         guard
             let goal = item?.goal,
             let progressToday = progressToday
         else {
-            return 0
+            return zeroForDrawingProgress
         }
         
-        return Double(progressToday / goal)
+        let progressInPercent = Double(progressToday) / Double(goal)
+        
+        return progressInPercent > 0.0 ? progressInPercent : zeroForDrawingProgress
     }
     
     func animateActivityRing() {
-        
-        guard
-            let goal = item?.goal,
-            let progressToday = progressToday
-        else {
-            return
-        }
-        
-        let progress = Double(progressToday / goal)
-        
         let colors = Gradient.colors(for: item)
         
         activityRingView.startColor = colors.end
         activityRingView.endColor = colors.start
-        
-        /*
-        UIView.animate(withDuration: 0.5 * progress) {
-            self.activityRingView.progress = progress
-        }
-        */
     }
-    
 }
 
 // MARK: - Constants

@@ -38,19 +38,51 @@ class GoalsViewModel {
     var expandedCell: GoalCollectionViewCell?
     var hiddenCells: [GoalCollectionViewCell] = []
     
-    func updateSteps() {
+    func updateSteps(completion: @escaping () -> Void) {
         GoalsDataStore.getSteps() { result in
             DispatchQueue.main.async {
                 let stepCount = Int(result)
                 self.stepsToday = stepCount
+                completion()
             }
         }
     }
     
     var stepsToday: Int = 0
     
-    //let goal = self.viewModel?.goals?.items[indexPath.row].goal
-    //let stepsToday = self.viewModel?.stepsToday
-    //let percent: Double = Double(stepsToday! / goal!)
+    var pointsToday: Int? {
+        
+        guard
+            let goals = goals?.items
+        else {
+            return nil
+        }
+        
+        var totalPoints = 0
+        
+        goals.forEach { goal in
+            
+            guard let points = goal.reward?.points else {
+                return
+            }
+            
+            switch goal.type {
+            
+            case .step:
+                if stepsToday >= goal.goal {
+                    totalPoints += points
+                }
+                
+            case .walking:
+                totalPoints += 0
+                
+            case .running:
+                totalPoints += 0
+            }
+            
+        }
+        
+        return totalPoints
+    }
     
 }
