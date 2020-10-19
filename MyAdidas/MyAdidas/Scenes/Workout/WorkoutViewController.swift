@@ -145,7 +145,9 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         
         distanceLabel.isHidden = false
         
-        distanceLabel.text = "Distance: \(distance) km"
+        let formattedDistance = String(format: "%.3f", distance / 100)
+        
+        distanceLabel.text = "Distance: \(formattedDistance) km"
     }
     
     private func updatePaceLabel() {
@@ -218,11 +220,6 @@ extension WorkoutViewController {
 extension WorkoutViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let locations = viewModel?.locations else {
-            debugPrint("Missing locations")
-            return
-        }
         
         for location in locations {
             

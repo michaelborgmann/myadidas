@@ -21,7 +21,6 @@ class WorkoutViewModel {
     var distance = 0.0
     var pace = 0.0
     
-    //var locations = [Location]()
     lazy var locations = [CLLocation]()
     
     init(_ item: Item) {
