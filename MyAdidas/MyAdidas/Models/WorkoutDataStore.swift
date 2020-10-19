@@ -53,7 +53,14 @@ class WorkoutDataStore {
                 end: workout.end
             )
             
-            builder.add([sample]) { (success, error) in
+            let distanceSample = HKCumulativeQuantitySample(
+                type: distanceWalkingRunning,
+                quantity: HKQuantity(unit: .meter(), doubleValue: workout.distance),
+                start: workout.start,
+                end: workout.end
+            )
+            
+            builder.add([distanceSample]) { (success, error) in
                 guard success else {
                     completion(false, error)
                     return

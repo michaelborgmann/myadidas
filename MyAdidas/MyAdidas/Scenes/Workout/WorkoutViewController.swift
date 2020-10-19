@@ -187,7 +187,9 @@ extension WorkoutViewController {
     }
     
     @objc func finishWorkout() {
-        viewModel?.session.end()
+        
+        viewModel?.session.end(with: viewModel?.distance ?? 0)
+        
         updateTimeLabel()
         
         locationManager.stopUpdatingLocation()

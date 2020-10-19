@@ -17,6 +17,7 @@ class WorkoutSession {
     
     private (set) var startDate: Date!
     private (set) var endDate: Date!
+    private (set) var distance: Double!
   
     var intervals: [WorkoutInterval] = []
     var state: WorkoutSessionState = .notStarted
@@ -26,10 +27,12 @@ class WorkoutSession {
         state = .active
     }
     
-    func end() {
+    func end(with distance: Double) {
         endDate = Date()
+        self.distance = distance
         addNewInterval()
         state = .finished
+        self.distance = distance
     }
     
     func clear() {
@@ -42,7 +45,8 @@ class WorkoutSession {
     private func addNewInterval() {
         let interval = WorkoutInterval(
             start: startDate,
-            end: endDate
+            end: endDate,
+            distance: distance
         )
         
         intervals.append(interval)

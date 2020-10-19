@@ -11,10 +11,12 @@ struct WorkoutInterval {
     
     var start: Date
     var end: Date
+    var distance: Double
     
-    init(start: Date, end: Date) {
+    init(start: Date, end: Date, distance: Double) {
         self.start = start
         self.end = end
+        self.distance = distance
     }
   
     var duration: TimeInterval {
@@ -29,6 +31,8 @@ struct WorkoutInterval {
         
         return totalCalories
     }
+    
+    
 }
 
 struct Workout {
@@ -52,6 +56,12 @@ struct Workout {
     var duration: TimeInterval {
         return intervals.reduce(0) { (result, interval) in
             result + interval.duration
+        }
+    }
+    
+    var distance: Double {
+        return intervals.reduce(0) { (result, interval) in
+            result + interval.distance
         }
     }
 }
