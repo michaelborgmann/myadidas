@@ -30,35 +30,11 @@ class WorkoutDataStore {
             }
             
             guard
-                /*
-                let activeEnergyBurned = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
-                let walkingSpeed = HKQuantityType.quantityType(forIdentifier: .walkingSpeed),
-                let walkingStepLength = HKQuantityType.quantityType(forIdentifier: .walkingStepLength),
-                let walkingAsymmetryPercentage = HKQuantityType.quantityType(forIdentifier: .walkingAsymmetryPercentage),
-                let walkingHeartRateAverage = HKQuantityType.quantityType(forIdentifier: .walkingHeartRateAverage),
-                let walkingDoubleSupportPercentage = HKQuantityType.quantityType(forIdentifier: .walkingDoubleSupportPercentage),
-                */
                 let distanceWalkingRunning = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
             else {
                 completion(false, nil)
                 return
             }
-            
-            /*
-             
-            // NOTE: Could be implemented as well
-             
-            let unit = HKUnit.kilocalorie()
-            let totalEnergyBurned = workout.totalEnergyBurned
-            let quantity = HKQuantity(unit: unit, doubleValue: totalEnergyBurned)
-            
-            let sample = HKCumulativeQuantitySample (
-                type: activeEnergyBurned,
-                quantity: quantity,
-                start: workout.start,
-                end: workout.end
-            )
-            */
             
             let distanceSample = HKCumulativeQuantitySample(
                 type: distanceWalkingRunning,

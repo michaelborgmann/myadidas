@@ -64,15 +64,13 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
         
-        viewModel?.updateHealthData() {
-            self.updatePoints()
-        }
-        
         setupNavigationController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        updatePointsAndCell()
         
         if viewModel?.expandedCell != nil {
             hideStatusAndNavBar = true
@@ -153,6 +151,29 @@ extension GoalsViewController {
         points.tintColor = .black
         
         navigationItem.leftBarButtonItem = points
+    }
+    
+    private func updatePointsAndCell() {
+        viewModel?.updateHealthData() {
+            self.updatePoints()
+            
+            
+            guard
+                let type = self.viewModel?.expandedCell?.activityType,
+                let cell = self.viewModel?.expandedCell
+            else {
+                return
+            }
+            
+            switch type {
+            case .step:
+                return
+            case .walking:
+                cell.updateProgress(self.viewModel?.kmWalkedToday)
+            case .running:
+                cell.updateProgress(self.viewModel?.kmRunnedToday)
+            }
+        }
     }
     
 }

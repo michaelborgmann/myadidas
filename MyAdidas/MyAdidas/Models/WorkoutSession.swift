@@ -25,6 +25,7 @@ class WorkoutSession {
     func start() {
         startDate = Date()
         state = .active
+        self.distance = 0
     }
     
     func end(with distance: Double) {

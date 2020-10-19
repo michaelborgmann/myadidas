@@ -120,6 +120,14 @@ class GoalCollectionViewCell: UICollectionViewCell {
         self.progressToday = progressToday
         self.workoutHandler = workoutHandler
     }
+    
+    func updateProgress(_ progress: Int?) {
+        guard let progress = progress else {
+            return
+        }
+        
+        self.progressToday = progress
+    }
 }
     
 // MARK: - Setup
@@ -187,6 +195,22 @@ extension GoalCollectionViewCell {
         }
         
         return progress >= goal ? true : false
+    }
+    
+    var activityType: Type? {
+        
+        guard let type = item?.type else {
+            return nil
+        }
+        
+        switch type {
+        case .step:
+            return .step
+        case .walking:
+            return .walking
+        case .running:
+            return .running
+        }
     }
 }
 
