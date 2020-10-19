@@ -7,7 +7,7 @@
 
 import UIKit
 
-let hackAlert = true
+let hackAlert = false
 
 protocol GoalsViewDelegate: class {
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)

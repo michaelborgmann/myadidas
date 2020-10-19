@@ -231,6 +231,7 @@ extension WorkoutViewController: CLLocationManagerDelegate {
                 if viewModel!.locations.count > 0 {
                     
                     viewModel?.distance += location.distance(from: viewModel!.locations.last!)
+                    
                     var coordinates = [CLLocationCoordinate2D]()
                     coordinates.append(viewModel!.locations.last!.coordinate)
                     coordinates.append(location.coordinate)
