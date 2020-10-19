@@ -198,7 +198,9 @@ extension WorkoutViewController {
           fatalError("Shouldn't be able to finish workout without saving.")
         }
         
-        WorkoutDataStore.save(workout: currentWorkout) { (success, error) in
+        let activityType: HKWorkoutActivityType = viewModel?.item.type == .walking ? .walking : .running
+        
+        WorkoutDataStore.save(activityType: activityType, workout: currentWorkout) { (success, error) in
         
             if success {
                 DispatchQueue.main.async {

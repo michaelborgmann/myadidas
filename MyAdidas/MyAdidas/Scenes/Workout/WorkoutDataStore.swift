@@ -9,12 +9,12 @@ import HealthKit
 
 class WorkoutDataStore {
     
-    class func save(workout: Workout, completion: @escaping ((Bool, Error?) -> Swift.Void)) {
+    class func save(activityType: HKWorkoutActivityType, workout: Workout, completion: @escaping ((Bool, Error?) -> Swift.Void)) {
     
         let healthStore = HKHealthStore()
         
         let workoutConfiguration = HKWorkoutConfiguration()
-        workoutConfiguration.activityType = .walking
+        workoutConfiguration.activityType = activityType
 
         let builder = HKWorkoutBuilder(
             healthStore: healthStore,
@@ -30,18 +30,24 @@ class WorkoutDataStore {
             }
             
             guard
+                /*
                 let activeEnergyBurned = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
                 let walkingSpeed = HKQuantityType.quantityType(forIdentifier: .walkingSpeed),
                 let walkingStepLength = HKQuantityType.quantityType(forIdentifier: .walkingStepLength),
                 let walkingAsymmetryPercentage = HKQuantityType.quantityType(forIdentifier: .walkingAsymmetryPercentage),
                 let walkingHeartRateAverage = HKQuantityType.quantityType(forIdentifier: .walkingHeartRateAverage),
                 let walkingDoubleSupportPercentage = HKQuantityType.quantityType(forIdentifier: .walkingDoubleSupportPercentage),
+                */
                 let distanceWalkingRunning = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
             else {
                 completion(false, nil)
                 return
             }
-                
+            
+            /*
+             
+            // NOTE: Could be implemented as well
+             
             let unit = HKUnit.kilocalorie()
             let totalEnergyBurned = workout.totalEnergyBurned
             let quantity = HKQuantity(unit: unit, doubleValue: totalEnergyBurned)
@@ -52,6 +58,7 @@ class WorkoutDataStore {
                 start: workout.start,
                 end: workout.end
             )
+            */
             
             let distanceSample = HKCumulativeQuantitySample(
                 type: distanceWalkingRunning,
@@ -83,9 +90,9 @@ class WorkoutDataStore {
         }
     }
     
-    class func loadWalkingWorkouts(completion: @escaping ([HKWorkout]?, Error?) -> Void) {
+    class func loadWorkouts(activityType: HKWorkoutActivityType, completion: @escaping ([HKWorkout]?, Error?) -> Void) {
         
-        let workoutPredicate = HKQuery.predicateForWorkouts(with: .walking)
+        let workoutPredicate = HKQuery.predicateForWorkouts(with: activityType)
         let sourcePredicate = HKQuery.predicateForObjects(from: .default())
         
         let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate, sourcePredicate])

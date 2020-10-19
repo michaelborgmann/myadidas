@@ -64,7 +64,7 @@ class GoalsViewController: UIViewController, ViewModelBindalbe {
         let nib = UINib(nibName: "GoalCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "GoalCell")
         
-        viewModel?.updateSteps() {
+        viewModel?.updateHealthData() {
             self.updatePoints()
         }
         
@@ -214,8 +214,10 @@ extension GoalsViewController: UICollectionViewDataSource {
         switch goal.type {
         case .step:
             progress = viewModel?.stepsToday
-        case .walking, .running:
-            progress = viewModel?.kmToday
+        case .walking:
+            progress = viewModel?.kmWalkedToday
+        case .running:
+            progress = viewModel?.kmRunnedToday
         }
         
         cell.configure(with: goal, progressToday: progress) {

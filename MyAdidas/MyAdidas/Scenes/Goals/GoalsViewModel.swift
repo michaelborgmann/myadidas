@@ -39,9 +39,9 @@ class GoalsViewModel {
     var expandedCell: GoalCollectionViewCell?
     var hiddenCells: [GoalCollectionViewCell] = []
     
-    func updateSteps(completion: @escaping () -> Void) {
+    func updateHealthData(completion: @escaping () -> Void) {
         
-        WorkoutDataStore.loadWalkingWorkouts() { (workouts, error) in
+        WorkoutDataStore.loadWorkouts(activityType: .walking) { (workouts, error) in
             DispatchQueue.main.async {
 
                 if error != nil {
@@ -63,21 +63,39 @@ class GoalsViewModel {
                 }
                 
                 
-                self.kmToday = Int(totalDistance)
+                self.kmWalkedToday = Int(totalDistance)
                 
                 completion()
             }
         }
         
-        /*
-        GoalsDataStore.getDistance() { result in
+        WorkoutDataStore.loadWorkouts(activityType: .running) { (workouts, error) in
             DispatchQueue.main.async {
+
+                if error != nil {
+                    debugPrint(error!)
+                    return
+                }
                 
-                self.kmToday = Int(result)
+                guard let workouts = workouts else {
+                    debugPrint("No workouts found")
+                    return
+                }
+                
+                let totalDistance = workouts.reduce(0.0) { (result, workout) in
+                    guard let distance = workout.totalDistance else {
+                        return result
+                    }
+                    
+                    return result + distance.doubleValue(for: .meter())
+                }
+                
+                
+                self.kmRunnedToday = Int(totalDistance)
+                
                 completion()
             }
         }
-        */
         
         GoalsDataStore.getSteps() { result in
             DispatchQueue.main.async {
@@ -88,7 +106,8 @@ class GoalsViewModel {
     }
     
     var stepsToday: Int = 0
-    var kmToday: Int = 0
+    var kmWalkedToday: Int = 0
+    var kmRunnedToday: Int = 0
     
     private var workouts: [HKWorkout]?
     
@@ -116,12 +135,12 @@ class GoalsViewModel {
                 }
                 
             case .walking:
-                if kmToday >= goal.goal {
+                if kmWalkedToday >= goal.goal {
                     totalPoints += points
                 }
                 
             case .running:
-                if kmToday >= goal.goal {
+                if kmRunnedToday >= goal.goal {
                     totalPoints += points
                 }
             }
