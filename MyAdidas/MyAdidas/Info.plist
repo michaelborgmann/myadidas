@@ -28,6 +28,8 @@
 	<string>Tracking workout needs to monitor your location</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Tracking workout needs to monitor your location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Tracking workout needs to monitor your location</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>texgyreadventor-regular.otf</string>
@@ -64,6 +66,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Tracking workout needs to monitor your location</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
