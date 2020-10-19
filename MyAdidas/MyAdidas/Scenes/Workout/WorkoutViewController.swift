@@ -145,13 +145,26 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         
         distanceLabel.isHidden = false
         
-        let formattedDistance = String(format: "%.3f", distance / 100)
+        //let formattedDistance = String(format: "%.3f", distance)
         
-        distanceLabel.text = "Distance: \(formattedDistance) km"
+        distanceLabel.text = "Distance: \(Int(distance)) m"
     }
     
     private func updatePaceLabel() {
-        paceLabel.isHidden = true
+        paceLabel.isHidden = false
+        
+        paceLabel.textColor = Style.labelColor
+        
+        guard let pace = viewModel?.pace else {
+            paceLabel.isHidden = true
+            return
+        }
+        
+        paceLabel.isHidden = false
+        
+        let formattedDistance = String(format: "%.1f", pace)
+        
+        paceLabel.text = "Pace: \(formattedDistance) km/h"
     }
     
 }
