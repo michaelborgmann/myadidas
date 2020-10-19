@@ -82,10 +82,14 @@ class GoalsViewModel {
                 }
                 
             case .walking:
-                totalPoints += 0
+                if kmToday >= goal.goal {
+                    totalPoints += points
+                }
                 
             case .running:
-                totalPoints += 0
+                if kmToday >= goal.goal {
+                    totalPoints += points
+                }
             }
             
         }
