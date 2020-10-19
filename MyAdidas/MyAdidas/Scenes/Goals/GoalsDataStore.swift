@@ -88,6 +88,5 @@ class GoalsDataStore {
 
         healthKitStore.execute(query)
     }
-    
 }
 

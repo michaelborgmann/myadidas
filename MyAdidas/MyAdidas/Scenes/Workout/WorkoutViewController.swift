@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreLocation
+import HealthKit
 
 protocol WorkoutViewDelegate: class {
     func dismiss()
@@ -18,6 +20,8 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
     // MARK: - Outlets
     
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
     
     // MARK: - Properties
     
@@ -43,6 +47,20 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         return formatter
     }()
     
+    lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 10.0
+        locationManager.allowsBackgroundLocationUpdates = true
+        
+        locationManager.requestAlwaysAuthorization()
+        
+        return locationManager
+    }()
+    
     // MARK: - Lifecycle
     
     required public init?<T>(coder: NSCoder, viewModel: T) {
@@ -61,7 +79,7 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         
         setupGradient()
         
-        updateTimeLabel()
+        updateUI()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(finishWorkout))
         view.addGestureRecognizer(tap)
@@ -73,6 +91,9 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         super.viewWillDisappear(animated)
         
         hideStatusAndNavBar = true
+    }
+    
+    private func setupLocationManager() {
     }
     
     private func setupGradient(colors: Gradient = .error) {
@@ -93,8 +114,10 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
 
     }
     
-    private func setupUI() {
+    private func updateUI() {
         updateTimeLabel()
+        updateDistanceLabel()
+        updatePaceLabel()
     }
     
     private func updateTimeLabel() {
@@ -108,6 +131,25 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
         
         let duration = Date().timeIntervalSince(startDate)
         timeLabel.text = durationFormatter.string(from: duration)
+        
+        
+    }
+    
+    private func updateDistanceLabel() {
+        distanceLabel.textColor = Style.labelColor
+        
+        guard let distance = viewModel?.distance else {
+            distanceLabel.isHidden = true
+            return
+        }
+        
+        distanceLabel.isHidden = false
+        
+        distanceLabel.text = "Distance: \(distance) km"
+    }
+    
+    private func updatePaceLabel() {
+        paceLabel.isHidden = true
     }
     
 }
@@ -117,16 +159,23 @@ class WorkoutViewController: UIViewController, ViewModelBindalbe {
 extension WorkoutViewController {
     
     func beginWorkout() {
+        
+        viewModel?.locations.removeAll()
+        
         viewModel?.session.start()
         
         viewModel?.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            self.updateTimeLabel()
+            self.updateUI()
         }
+        
+        locationManager.startUpdatingLocation()
     }
     
     @objc func finishWorkout() {
         viewModel?.session.end()
         updateTimeLabel()
+        
+        locationManager.stopUpdatingLocation()
         
         guard let currentWorkout = viewModel?.session.completeWorkout else {
           fatalError("Shouldn't be able to finish workout without saving.")
@@ -160,6 +209,40 @@ extension WorkoutViewController {
         
         alert.addAction(okayAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - Location Tracking
+
+extension WorkoutViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let locations = viewModel?.locations else {
+            debugPrint("Missing locations")
+            return
+        }
+        
+        for location in locations {
+            
+            if location.horizontalAccuracy < 10 {
+                
+                if viewModel!.locations.count > 0 {
+                    
+                    viewModel?.distance += location.distance(from: viewModel!.locations.last!)
+                    var coordinates = [CLLocationCoordinate2D]()
+                    coordinates.append(viewModel!.locations.last!.coordinate)
+                    coordinates.append(location.coordinate)
+                    
+                    viewModel?.pace = location.distance(from: viewModel!.locations.last!) / location.timestamp.timeIntervalSince(viewModel!.locations.last!.timestamp)
+                    
+                }
+                
+            }
+            
+            viewModel?.locations.append(location)   
+        }
     }
     
 }

@@ -17,20 +17,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:23:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-H1-nTy">
-                                <rect key="frame" x="109.5" y="418.5" width="195" height="59"/>
+                                <rect key="frame" x="109.5" y="419" width="195" height="58.5"/>
                                 <fontDescription key="fontDescription" name="TeXGyreAdventor-BoldItalic" family="TeX Gyre Adventor" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="EQw-8b-2pW">
+                                <rect key="frame" x="101" y="502" width="212.5" height="16.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance: 0.0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNW-sf-dgB">
+                                        <rect key="frame" x="0.0" y="0.0" width="105.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="TeXGyreAdventor-BoldItalic" family="TeX Gyre Adventor" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace: 5 km/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dau-Qs-l1q">
+                                        <rect key="frame" x="129.5" y="0.0" width="83" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="TeXGyreAdventor-BoldItalic" family="TeX Gyre Adventor" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LNo-vu-bJI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="EQw-8b-2pW" firstAttribute="top" secondItem="eEt-H1-nTy" secondAttribute="bottom" constant="24.5" id="7Ix-Jj-rZI"/>
                             <constraint firstItem="eEt-H1-nTy" firstAttribute="centerY" secondItem="hcV-AS-1UY" secondAttribute="centerY" id="bU2-dV-Zaz"/>
+                            <constraint firstItem="EQw-8b-2pW" firstAttribute="centerX" secondItem="eEt-H1-nTy" secondAttribute="centerX" id="hwF-S3-Php"/>
                             <constraint firstItem="eEt-H1-nTy" firstAttribute="centerX" secondItem="hcV-AS-1UY" secondAttribute="centerX" id="xi5-qJ-g1E"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="distanceLabel" destination="cNW-sf-dgB" id="Qz3-G2-TJg"/>
+                        <outlet property="paceLabel" destination="Dau-Qs-l1q" id="CDB-qA-CW5"/>
                         <outlet property="timeLabel" destination="eEt-H1-nTy" id="Wes-7o-knP"/>
                     </connections>
                 </viewController>
