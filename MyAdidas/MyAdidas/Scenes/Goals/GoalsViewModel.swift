@@ -39,16 +39,24 @@ class GoalsViewModel {
     var hiddenCells: [GoalCollectionViewCell] = []
     
     func updateSteps(completion: @escaping () -> Void) {
+        
+        GoalsDataStore.getDistance() { result in
+            DispatchQueue.main.async {
+                self.kmToday = Int(result)
+                completion()
+            }
+        }
+        
         GoalsDataStore.getSteps() { result in
             DispatchQueue.main.async {
-                let stepCount = Int(result)
-                self.stepsToday = stepCount
+                self.stepsToday = Int(result)
                 completion()
             }
         }
     }
     
     var stepsToday: Int = 0
+    var kmToday: Int = 0
     
     var pointsToday: Int? {
         

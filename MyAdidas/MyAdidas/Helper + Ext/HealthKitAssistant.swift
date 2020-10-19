@@ -41,6 +41,7 @@ class HealthKitSetupAssistant {
             bodyMassIndex,
             activeEnergy,
             stepsCount,
+            distanceType,
             HKObjectType.workoutType()
         ]
         
@@ -52,7 +53,7 @@ class HealthKitSetupAssistant {
             height,
             bodyMass,
             stepsCount,
-            //distanceType,
+            distanceType,
             HKObjectType.workoutType()
         ]
         

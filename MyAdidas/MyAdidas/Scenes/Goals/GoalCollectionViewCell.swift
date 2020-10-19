@@ -75,10 +75,28 @@ class GoalCollectionViewCell: UICollectionViewCell {
             switch type {
             case .step:
                 detailsLabel.text = "You made \(goal) steps today."
+                
             case .walking:
-                detailsLabel.text = "You walked \(goal) km today."
+                
+                let km = Double(goal) / 1000
+                
+                if km == floor(km) {
+                    detailsLabel.text = "You walked \(Int(km)) km today"
+                } else {
+                    let kmWithPrecision = String(format: "%.1f", km)
+                    detailsLabel.text = "You walked \(kmWithPrecision) km today."
+                }
+                
             case .running:
-                detailsLabel.text = "You runned \(goal) km today."
+                
+                let km = Double(goal) / 1000
+                
+                if km == floor(km) {
+                    detailsLabel.text = "You runned \(Int(km)) km today"
+                } else {
+                    let kmWithPrecision = String(format: "%.1f", km)
+                    detailsLabel.text = "You runned \(kmWithPrecision) km today."
+                }
             }
             
             updatePointLabel()

@@ -9,10 +9,7 @@ import HealthKit
 
 class WorkoutDataStore {
     
-    class func save(
-        workout: Workout,
-        completion: @escaping ((Bool, Error?) -> Swift.Void)
-    ) {
+    class func save(workout: Workout, completion: @escaping ((Bool, Error?) -> Swift.Void)) {
     
         let healthStore = HKHealthStore()
         

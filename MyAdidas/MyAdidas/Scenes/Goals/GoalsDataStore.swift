@@ -16,7 +16,7 @@ class GoalsDataStore {
         let stepsCount = HKQuantityType.quantityType(forIdentifier: .stepCount)
         
         let date = Date()
-        let cal = Calendar(identifier: Calendar.Identifier.gregorian)
+        let cal = Calendar(identifier: .gregorian)
         let newDate = cal.startOfDay(for: date)
         
         let predicate = HKQuery.predicateForSamples(withStart: newDate, end: Date(), options: .strictStartDate)
@@ -44,8 +44,46 @@ class GoalsDataStore {
                     }
                 }
             }
+        }
 
+        healthKitStore.execute(query)
+    }
+    
+    class func getDistance(completion: @escaping (Double) -> Void) {
+        
+        let healthKitStore = HKHealthStore()
+        
+        let stepsCount = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
+        
+        let date = Date()
+        let cal = Calendar(identifier: .gregorian)
+        let newDate = cal.startOfDay(for: date)
+        
+        let predicate = HKQuery.predicateForSamples(withStart: newDate, end: Date(), options: .strictStartDate)
+        var interval = DateComponents()
+        interval.day = 1
+        
+        let query = HKStatisticsCollectionQuery(quantityType: stepsCount!, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: newDate as Date, intervalComponents:interval)
 
+        query.initialResultsHandler = { query, results, error in
+
+            if error != nil {
+                return
+            }
+
+            if let myResults = results {
+                myResults.enumerateStatistics(from: newDate, to: Date()) {
+                    statistics, stop in
+
+                    if let quantity = statistics.sumQuantity() {
+
+                        let distance = quantity.doubleValue(for: .meter())
+                        
+                        completion(distance)
+
+                    }
+                }
+            }
         }
 
         healthKitStore.execute(query)

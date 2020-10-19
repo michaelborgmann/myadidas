@@ -7,7 +7,7 @@
 
 import UIKit
 
-let hackAlert = true
+let hackAlert = false
 
 protocol GoalsViewDelegate: class {
     func showError(_ goalsViewController: GoalsViewController, emoji: String, title: String, details: String)
@@ -209,7 +209,16 @@ extension GoalsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: goal, progressToday: viewModel?.stepsToday) {
+        let progress: Int!
+        
+        switch goal.type {
+        case .step:
+            progress = viewModel?.stepsToday
+        case .walking, .running:
+            progress = viewModel?.kmToday
+        }
+        
+        cell.configure(with: goal, progressToday: progress) {
             self.startWorkoutAlert(goal)
         }
         
