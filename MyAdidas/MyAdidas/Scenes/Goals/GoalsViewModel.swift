@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import HealthKit
 
 class GoalsViewModel {
     
@@ -40,12 +41,43 @@ class GoalsViewModel {
     
     func updateSteps(completion: @escaping () -> Void) {
         
+        WorkoutDataStore.loadWalkingWorkouts() { (workouts, error) in
+            DispatchQueue.main.async {
+
+                if error != nil {
+                    debugPrint(error!)
+                    return
+                }
+                
+                guard let workouts = workouts else {
+                    debugPrint("No workouts found")
+                    return
+                }
+                
+                let totalDistance = workouts.reduce(0.0) { (result, workout) in
+                    guard let distance = workout.totalDistance else {
+                        return result
+                    }
+                    
+                    return result + distance.doubleValue(for: .meter())
+                }
+                
+                
+                self.kmToday = Int(totalDistance)
+                
+                completion()
+            }
+        }
+        
+        /*
         GoalsDataStore.getDistance() { result in
             DispatchQueue.main.async {
+                
                 self.kmToday = Int(result)
                 completion()
             }
         }
+        */
         
         GoalsDataStore.getSteps() { result in
             DispatchQueue.main.async {
@@ -57,6 +89,8 @@ class GoalsViewModel {
     
     var stepsToday: Int = 0
     var kmToday: Int = 0
+    
+    private var workouts: [HKWorkout]?
     
     var pointsToday: Int? {
         

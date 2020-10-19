@@ -53,7 +53,7 @@ class GoalsDataStore {
         
         let healthKitStore = HKHealthStore()
         
-        let stepsCount = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
+        let distanceWalkingRunning = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
         
         let date = Date()
         let cal = Calendar(identifier: .gregorian)
@@ -63,7 +63,13 @@ class GoalsDataStore {
         var interval = DateComponents()
         interval.day = 1
         
-        let query = HKStatisticsCollectionQuery(quantityType: stepsCount!, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: newDate as Date, intervalComponents:interval)
+        let query = HKStatisticsCollectionQuery(
+            quantityType: distanceWalkingRunning!,
+            quantitySamplePredicate: predicate,
+            options: [.cumulativeSum],
+            anchorDate: newDate as Date,
+            intervalComponents: interval
+        )
 
         query.initialResultsHandler = { query, results, error in
 

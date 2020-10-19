@@ -243,7 +243,6 @@
 				4CEB14762538FE960021CDE3 /* UserHealthProfile.swift */,
 				4C75859F253C6E4A0079F039 /* Workout.swift */,
 				4C29DFBF253CC34D007A5965 /* WorkoutSession.swift */,
-				4C7585A4253C6F2A0079F039 /* WorkoutDataStore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +284,7 @@
 				4C7585CF253CA6120079F039 /* Workout.storyboard */,
 				4C7585C1253CA5F10079F039 /* WorkoutViewController.swift */,
 				4C7585CA253CA6040079F039 /* WorkoutViewModel.swift */,
+				4C7585A4253C6F2A0079F039 /* WorkoutDataStore.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";

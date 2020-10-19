@@ -83,7 +83,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
                 if km == floor(km) {
                     detailsLabel.text = "You walked \(Int(km)) km today"
                 } else {
-                    let kmWithPrecision = String(format: "%.1f", km)
+                    let kmWithPrecision = String(format: "%.2f", km)
                     detailsLabel.text = "You walked \(kmWithPrecision) km today."
                 }
                 
@@ -94,7 +94,7 @@ class GoalCollectionViewCell: UICollectionViewCell {
                 if km == floor(km) {
                     detailsLabel.text = "You runned \(Int(km)) km today"
                 } else {
-                    let kmWithPrecision = String(format: "%.1f", km)
+                    let kmWithPrecision = String(format: "%.2f", km)
                     detailsLabel.text = "You runned \(kmWithPrecision) km today."
                 }
             }
