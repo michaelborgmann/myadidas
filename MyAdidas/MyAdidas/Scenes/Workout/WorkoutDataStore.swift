@@ -71,9 +71,13 @@ class WorkoutDataStore {
         let workoutPredicate = HKQuery.predicateForWorkouts(with: activityType)
         let sourcePredicate = HKQuery.predicateForObjects(from: .default())
         
-        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate, sourcePredicate])
-        
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
+        
+        let cal = NSCalendar(calendarIdentifier: .gregorian)!
+        let newDate = cal.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: newDate, end: Date(), options: .strictStartDate)
+        
+        let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate, sourcePredicate, predicate])
         
         let query = HKSampleQuery(
             sampleType: .workoutType(),

@@ -55,6 +55,7 @@ class GoalsViewModel {
                 }
                 
                 let totalDistance = workouts.reduce(0.0) { (result, workout) in
+                    
                     guard let distance = workout.totalDistance else {
                         return result
                     }

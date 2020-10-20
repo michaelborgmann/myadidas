@@ -157,7 +157,6 @@ extension GoalsViewController {
         viewModel?.updateHealthData() {
             self.updatePoints()
             
-            
             guard
                 let type = self.viewModel?.expandedCell?.activityType,
                 let cell = self.viewModel?.expandedCell
